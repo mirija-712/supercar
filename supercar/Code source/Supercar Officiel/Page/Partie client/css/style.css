@@ -1,0 +1,595 @@
+/* IMPORTER des fonts pour le style d'ecriture */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap');
+
+/*
+-----------------------------------------------------------------------------------------------------------------------------------------
+                                         CSS DE NOTRE PROJET SUPERCAR : SHAAN ; MAHERY ; STEVE 
+-----------------------------------------------------------------------------------------------------------------------------------------
+*/
+
+/* -------------------------------------------------- PARTIE DE SHAAN ------------------------------------------------------------------*/
+
+
+/* LE CORPS */
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Raleway', sans-serif;
+    background-color: #E2E2E2;
+}
+
+#reserver-rdv{
+    position: absolute;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+#imagecrop {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-container {
+    height: 60vh; 
+    overflow: hidden;
+}
+
+
+/* ---------------------------------------------- SECTION MAIN ------------------------------------------ */
+
+/* SUPERCAR */
+.titre
+{
+    font-size: 10vh;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    position: absolute;
+    top: 28vh; 
+    left: 50%; 
+    transform: translateX(-50%); /* PERMETTRE DE LE CENTRER */
+    z-index: 1; /* PERMETTRE AU TITRE D'ETRE AU DESSUS DE LA VIDEO */
+}
+
+/* SECTION MAIN */
+.main 
+{
+    position: relative; /* PERMETTRE AUX ELMT D'EN DESSOUS D'ETRE EN DESSOUS */
+    height: 100vh;
+}
+
+/* VIDÉO D'ARRIÈRE-PLAN */
+.main video
+{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* EN DESSOUS DU TITRE */
+}
+
+/* ---------------------------------------- PARTIE DEMANDE ESSAI ACCUEIL ---------------------------------*/
+
+.accueil-demande-essaie {
+    position: relative;
+    width: 100%;
+    max-height: 60vh; /* POUR COUPE LA VIDEO */
+    border-radius: 30%;
+    overflow: hidden; /* PERMET DE FAIRE MARCHER BORDURE RADIUS */
+}
+
+.accueil-demande-essaie video {
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* COUVRIR TOUTE LA SECTION */
+    object-position: center bottom; /* VISION DE LA VIDEO (COMME ELLE EST COUPE) */
+}
+
+/*---------------------------------------- MERCEDES ACCUEIL VIDEO -----------------------------------------*/
+
+.mercedes-acc #merco-bouton
+{
+    position: absolute;
+    left: 85%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+.mercedes-acc
+{
+    position: relative;
+    height: 100vh;
+}
+
+.mercedes-acc video
+{
+    width: 100%; 
+    height: 60%; /* MOITIE VIDEO */
+    position: absolute;
+    top: 50%; /* DEPLACEMENT VIDEO DE MOITIE DU BAS (VISION) */
+    left: 0;
+    object-fit: cover; /* POUR COUVRIR TOUT CE QUE J'AI DEMANDE */
+    clip: rect(auto, auto, auto, auto); /* COUPE MOITIE SUPERIEUR */
+    transform: translateY(-50%); 
+}
+
+/*---------------------------------------- BMW ACCUEIL VIDEO -----------------------------------------*/
+
+.bmw-acc #bmw-bouton
+{
+    position: absolute;
+    left: 85%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+.bmw-acc
+{
+    position: relative;
+    height: 100vh;
+}
+
+.bmw-acc video
+{
+    width: 100%; 
+    height: 60%; /* MOITIE VIDEO */
+    position: absolute;
+    top: 50%; /* DEPLACEMENT VIDEO DE MOITIE DU BAS (VISION) */
+    left: 0;
+    object-fit: cover; /* POUR COUVRIR TOUT CE QUE J'AI DEMANDE */
+    clip: rect(auto, auto, auto, auto); /* COUPE MOITIE SUPERIEUR */
+    transform: translateY(-50%); 
+}
+
+/*---------------------------------------- PORSCHE ACCUEIL VIDEO -----------------------------------------*/
+
+.porsche-acc #porsche-bouton
+{
+    position: absolute;
+    left: 85%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.porsche-acc 
+{
+    position: relative;
+    height: 100vh;
+}
+
+.porsche-acc video
+{
+    width: 100%; 
+    height: 60%; /* MOITIE VIDEO */
+    position: absolute;
+    top: 50%; /* DEPLACEMENT VIDEO DE MOITIE DU BAS (VISION) */
+    left: 0;
+    object-fit: cover; /* POUR COUVRIR TOUT CE QUE J'AI DEMANDE */
+    clip: rect(auto, auto, auto, auto); /* COUPE MOITIE SUPERIEUR */
+    transform: translateY(-50%); 
+}
+
+/*---------------------------------------- AUDI ACCUEIL VIDEO -----------------------------------------*/
+
+.audi-acc #audi-bouton
+{
+    position: absolute;
+    left: 85%;
+    top: 75%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    text-align: center;
+}
+
+.audi-acc 
+{
+    position: relative;
+    height: 100vh;
+}
+
+.audi-acc video
+{
+    width: 100%; 
+    height: 60%; /* MOITIE VIDEO */
+    position: absolute;
+    top: 50%; /* DEPLACEMENT VIDEO DE MOITIE DU BAS (VISION) */
+    left: 0;
+    object-fit: cover; /* POUR COUVRIR TOUT CE QUE J'AI DEMANDE */
+    clip: rect(auto, auto, auto, auto); /* COUPE MOITIE SUPERIEUR */
+    transform: translateY(-50%); 
+}
+
+/* ----------------------------- PARAMETRE POUR INSCRIPTION / contacte ---------------*/
+
+.inscrit
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajout d'une hauteur pour centrer verticalement */
+}
+
+.inscrit video
+{
+    position: absolute;
+    top: -10;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Pour placer la vidéo en arrière-plan */
+}
+
+/* LE FORMULAIRE D'INSCRIPTION */
+
+
+.inscrit #form-inscription
+{
+    background-color: #f2f2f2;
+    padding: 20px; /* Réduction de la marge interne */
+    border-radius: 10px; /* Coins arrondis */
+    position: absolute;
+    top: 50%; /* Positionnement verticalement au milieu */
+    left: 50%; /* Positionnement horizontalement au milieu */
+    transform: translate(-50%, -50%);
+    max-width: 300px; /* Définition d'une largeur maximale pour le formulaire */
+    width: 100%; /* Largeur du formulaire */
+}
+
+.contact {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajout d'une hauteur pour centrer verticalement */
+}
+.form-contact {
+    background-color: #f2f2f2;
+    padding: 20px; 
+    border-radius: 10px; 
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 300px; /* Définition d'une largeur maximale pour le formulaire */
+    width: 100%; /* Largeur du formulaire */
+}
+
+/* Réduction de la taille de la police */
+.form-contact label,
+.form-contact input,
+.form-contact select,
+.form-contact textarea,
+.form-contact button {
+    font-size: 14px;
+}
+
+
+.contact video {
+    position: absolute;
+    top: -10;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Pour placer la vidéo en arrière-plan */
+}
+
+
+.cote-contact,
+.cote-droite {
+    background-color: #4892D7; 
+    padding: 10px; /* ESPACE INT */
+    border-radius: 10px; 
+    margin-bottom: 1rem; /* ESPACE ELEMENTS */
+    color: white;
+    width: 200px;
+    height: auto; 
+}
+
+/* ------------------------------ PARAMETRE DE LA NAVBAR ---------------------------------------- */
+
+/* LOGO D'INSCRIPTION */
+.logo-container img 
+{
+    width: 30px; 
+    height: auto;
+}
+
+/* LOGO DE SUPERCAR */
+#logo
+{
+    margin-left: 4px; /* DISTANCE ENTRE LE LOGO EST LE BORD */
+    max-width: 60px; /* LARGEUR  */
+    height: auto;
+}
+
+.navbar-nav
+{
+    margin: auto; /* METTRE TOUT AU MILIEU */
+}
+
+.navbar-nav .nav-link 
+{
+    font-weight: bold; /* TEXTE EN GRAS */
+    color: black !important ; /* LE !IMPORTANT PERMET LE PRIORITAIRE */
+}
+
+.navbar-nav .nav-item
+{
+    margin-right: 20px; /* ESPACE ENTRE ITEMS */
+}
+
+/* BORDURE LORSQUE ITMES TOUCHE */
+.navbar-nav .nav-item:hover .nav-link
+{
+    border: 1px solid #4892D7; 
+    border-radius: 5px; /* COINS ARRONDIS DE 5px */
+    background-color: #4892D7; 
+    color: white; /* LORSQUE BORDURE COULEUR = BLANC */
+}
+
+/* Couleur du bouton à trois barres */
+.navbar-toggler-icon
+{
+    background-color: rgba(70, 70, 70, 0.261) 
+}
+
+/* ------------------------------------ LES BORDURE DES FORMULAIRES : CONTACTE ET INSCRIPTION ---------------------------- */
+
+
+
+/* ---------------------------------------PARTIE FOOTER------------------------------------ */
+.footer
+{
+    background-color: #000; 
+    color: #fff;  
+    padding: 20px; /* MARGE DE 20px ENTRE LE BORD ET LE TEXTE DU FOOTER*/
+}
+
+#link-footer
+{
+    color: #fff; /* COULEUR LIENS + TEXTE EN BLANC */
+}
+
+#link-footer:hover
+{
+    text-decoration: underline; /* SOULIGNER LES LIENS QUAND LE CURSEUR EST AU DESSUS */
+}
+/* ----------------------------------------------------------------------------------------- */
+
+/* -------------------------------------------- LE CSS DE STEVE ------------------------------------------------*/
+
+#texte-h4{
+    text-decoration:dashed;
+    color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#h1-menu{
+    color: crimson;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#h1-histoire{
+    background-color: #9f5333;
+    color: rgb(160, 144, 144);
+}
+
+#txt-contact{
+    color:rgb(255, 255, 255);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#para-1{
+    color: rgb(0, 0, 0);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#para-2{
+    color: rgb(13, 12, 12);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#para-3{
+    color: rgb(246, 246, 246);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+#ln-menu{
+    text-decoration: dashed;
+    color: black;
+}
+
+#ln-voiture{
+    text-decoration: dashed;
+    color: rgb(0, 0, 0);
+}
+
+#overplay-1{
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#overplay-2{
+    position: absolute;
+    top: 90%;
+    left: 85%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#overplay-3{
+    background-color: rgb(240, 248, 255);
+    border-radius: 5%;
+    position: absolute;
+    top: 20%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 254, 254);
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#overplay-4{
+    background-color: rgba(0, 0, 0, 0.612);
+    border-radius: 5%;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+#overplay-5{
+    border-radius: 5%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.footer{
+    background-color: rgb(8, 8, 8);
+}
+
+#link-footer{
+    text-decoration:dashed;
+    color: rgb(135, 130, 124);
+}
+
+#img-menu{
+    border-radius: 10%;
+}
+
+#input-contact{
+    height: 50px;
+    width: 330px;
+    border-radius: 5px; 
+    background-color: rgb(179, 179, 178);
+}
+
+
+#input-contact-radio{
+    height: 10px;
+    width: 10px;
+}
+
+#para-contact{
+    background-color: rgba(255, 0, 0, 0.697);
+    border-radius: 10px;
+}
+
+#para-demande-essaie{
+    color: #0088ff;
+}
+
+#area-contact{
+    border-radius: 5px;
+}
+
+#para-histoire{
+    background-color: rgba(185, 103, 49, 0.628);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    border-radius: 10px;
+    color: aliceblue;
+}
+
+textarea{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;  
+}
+
+
+input,select{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #0088ff;
+    outline: none;
+}
+
+#para-voiture{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: rgb(0, 0, 0);
+}
+
+#img-voitures{
+    border-radius: 3%;
+    box-shadow: 20px;
+}
+
+#lbl-demande-esssai{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    size: 75px;
+    background-color: rgba(0, 0, 0, 0.437);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0);
+ }
+
+#lbl-voiture{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(255, 255, 255);
+    size: 75px;
+    background-color: rgba(0, 0, 0, 0.465);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgb(0, 0, 0);
+}
+
+#lbl-creation-compte{
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(0, 0, 0);
+    size: 75px;
+    background-color: rgba(222, 218, 218, 0.85);
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgb(90, 85, 85);
+}
+
+#caracteristique{
+    background-color: #849fb7c6;
+}

@@ -1,0 +1,216 @@
+/* IMPORTER des fonts pour le style d'ecriture */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&display=swap');
+
+/* LE BODY du site supercar */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    background-color: #E2E2E2;
+    color: whitesmoke;
+}
+
+/* section main */
+.main {
+    background-image: url("../img/718.jpg"); 
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover; /* Ajustez la taille de l'image pour qu'elle couvre la section */
+    background-position: center center; /* Centrez l'image horizontalement et verticalement */
+    text-align: center;
+    color: white;
+    padding-top: 19rem;
+    margin-bottom: 3rem; /* Ajoutez une marge basse pour éviter que la section "Contact" ne coupe l'image */
+
+}
+
+/* PARAMETRE DU LOGO de la navbar */
+.logo {
+    margin-left: 5px; /* laisser une marge de 5px entre la gauche et le logo */
+}
+
+.logo img {
+    max-width: 100px; /* largeur du logo */
+    height: auto;
+}
+
+/* Centrer horizontalement les éléments de la barre de navigation */
+.navbar-nav {
+    margin: auto; /* Marges automatiques à gauche et à droite pour centrer horizontalement */
+    display: flex; /* Utiliser le modèle de boîte flexible pour le centrage */
+    justify-content: center; /* Centrer les éléments horizontalement */
+}
+
+/* Style pour le texte des nav-links, incluant le gras */
+.navbar-nav .nav-link {
+    font-weight: bold; /* Rend le texte en gras */
+}
+
+/* Centrer le texte à l'intérieur de chaque élément nav-item */
+.navbar-nav .nav-item {
+    text-align: center; /* Centrer le texte horizontalement à l'intérieur de chaque élément nav-item */
+    margin-right: 15px; /* Ajoute un espacement à droite entre les éléments nav-item */
+}
+
+/* Style pour la bordure et la couleur de fond du nav-bar lorsqu'un nav-item est survolé */
+.navbar-nav .nav-item:hover .nav-link {
+    border: 1px solid #4892D7; /* Ajoute une bordure bleue de 1 pixel */
+    border-radius: 5px; /* Ajoute des coins arrondis à la bordure */
+    background-color: #4892D7; /* Ajoute une couleur de fond bleue */
+    color: white; /* Change la couleur du texte à blanc pour un meilleur contraste */
+    padding: 8px; /* Ajoute un peu de rembourrage pour un meilleur aspect visuel */
+}
+
+/* Masquer la sous-liste par défaut */
+.dropdown-menu {
+    display: none;
+}
+
+/* Afficher la sous-liste au survol de l'option "Nos modèles" */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+
+/* Titre */
+.titre {
+    font-size: 10vh;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    margin-top: 28vh; /* Ajustez cette valeur pour déplacer le titre en dessous de la barre de navigation */
+}
+
+/* Sous-titre */
+.sous-titre {
+    font-weight: bold;
+    font-size: 2vh;
+    color: #000000;
+    margin-top: 2vh; /* Ajustez cette valeur pour déplacer le sous-titre en dessous de la barre de navigation */
+    background-color: #f2f2f2; /* Gris clair, vous pouvez ajuster la couleur selon vos préférences */
+    padding: 20px; /* Espace interne pour donner de la marge au texte */
+    margin: 20px 0; /* Espace externe pour distinguer du contenu environnant */
+
+}
+
+
+/* Style pour le formulaire d'inscription */
+.form-inscription 
+{
+    background-color: #f2f2f2; /* Utilisez la couleur de fond grise que vous préférez */
+    padding: 20px; /* Ajoutez un peu de rembourrage pour l'espace autour du formulaire */
+    border-radius: 10px; /* Ajoutez des coins arrondis au formulaire pour un aspect visuel amélioré */
+    margin-top: 20px; /* Ajustez la marge supérieure pour un espacement par rapport aux éléments ci-dessus */
+    margin-bottom: 3rem;
+}
+
+/* Ajoutez une couleur de fond grise au formulaire */
+.form-contact
+{
+    background-color: #f2f2f2; /* Utilisez la couleur de fond grise que vous préférez */
+    padding: 20px; /* Ajoutez un peu de rembourrage pour l'espace autour du formulaire */
+    border-radius: 10px; /* Ajoutez des coins arrondis au formulaire pour un aspect visuel amélioré */
+    margin-top: 20px; /* Ajustez la marge supérieure pour un espacement par rapport aux éléments ci-dessus */
+    margin-bottom: 3rem;
+}
+
+/* Partie Mahery */ 
+h1 {
+    color: red;
+}
+
+h2 {
+    color: red;
+}
+
+#id1 {
+    background-color: #001f3f;
+}
+
+img {
+    width: 625px; 
+    max-height: 625px; 
+    float: left;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pour couvrir toute la zone disponible sans déformation */
+    z-index: -1; /* Pour placer la vidéo derrière le contenu */
+}
+
+.event-image img {
+    width: 500px; /* Ajustez la taille de l'image selon vos besoins */
+    height: auto;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+#events {
+    display: flex;
+    max-width: 1275px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);  
+    backdrop-filter: blur(6px); /* Flou du fond */
+}
+
+#events:hover {
+    transform: scale(1.05);
+    transition: transform 0.15s ease;
+}
+
+/* ---------------------------------------PARTIE FOOTER------------------------------------ */
+.footer
+{
+    background-color: #000; 
+    color: #fff;  
+    padding: 20px; /* MARGE DE 20px ENTRE LE BORD ET LE TEXTE DU FOOTER*/
+}
+
+#link-footer
+{
+    color: #fff; /* COULEUR LIENS + TEXTE EN BLANC */
+}
+
+#link-footer:hover
+{
+    text-decoration: underline; /* SOULIGNER LES LIENS QUAND LE CURSEUR EST AU DESSUS */
+}
+
+#footer-image {
+    height: 20px;
+    width: 20px;
+}
+
+#texte-gras {
+    color: gold;
+}
+
+#lbl-corps-voiture {
+    border: 1px solid black;
+}
