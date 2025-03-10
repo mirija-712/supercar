@@ -133,106 +133,82 @@ if (isset($_SESSION['nom_utilisateur'])) {
             </p>
         </div>
 
-        
+    <br><br><br><br>
+
+
+
 <?php
- 
- // Inclusion de la connexion à la base de données
- include ("../../include_bdd/connexion.bdd.php");
+// Inclusion de la connexion à la base de données
+include("../../include_bdd/connexion.bdd.php");
 
- // Vérifie si la connexion est bien établie
- if ($connexion->connect_error) {
+// Vérifie si la connexion est bien établie
+if ($connexion->connect_error) {
     die("Connexion à la base de données échouée : " . $connexion->connect_error);
- }
+}
 
-  
- // Récupération des données de la base
- $query = "SELECT * FROM voitures WHERE marque='MERCEDES'";
- $result = $connexion->query($query);
-  
- // Construire le container Bootstrap avec les données de la voiture
- $container_nouv = "";
-  
- if ($result->num_rows > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
-        $container_nouv .= '<section class="sct-voiture">';
-        $container_nouv .= '<div class="row justify-content-center" id="lbl-corps-voiture">';
-        $container_nouv .= '<div class="col-md-5">';
-        $container_nouv .= '<br>';
-        $container_nouv .= '<h1 align="center">'. $row["nom_modele"] .'</h1>';
-        $container_nouv .= '<ul>';
-        $container_nouv .= '<li> <img src="icones/icons8-événement-48.png" height="20px" width="20px" alt=""> <b>'. $row["annee"] .'</b></li>';
-        $container_nouv .= '<li> <img src="icones/icons8-transmission-64.png" height="20px" width="20px" alt="">  <b>'. $row["transmission"] .'</b></li>';
-        $container_nouv .= '<li> <img src="icones/chauffage-de-siège.png" height="20px" width="20px" alt="">  <b>'. $row["sieges"] .'</b></li>';
-        $container_nouv .= '<li> <img src="icones/icons8-prix-100.png" height="20px" width="20px" alt="">  <b>'. $row["prix"] .' €</b></li>';
-        $container_nouv .= '<li> <img src="icones/compteur.png" height="20px" width="20px" alt="">  <b>'. $row["vitesse_max"] .' km/h</b></li>';
-        $container_nouv .= '<li> <img src="icones/icons8-moteur-100.png" height="20px" width="20px" alt="">  <b>'. $row["moteur"] .'</b></li>';
-        $container_nouv .= '<li> <img src="icones/pompe-à-essence.png" height="20px" width="20px" alt="">  <b>'. $row["consommation"] .'</b></li>';
-        $container_nouv .= '<li> <img src="icones/icons8-panneau-chevaux-100.png" height="20px" width="20px" alt="">  <b>'. $row["puissance"] .' chevaux</b></li>';
-        $container_nouv .= '</ul>';
-        $container_nouv .= '<h6>'. $row["description"] .'</h6>';
-        $container_nouv .= '<br><br><br>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<div class="col-md-6">';
-        $container_nouv .= '<br>';
-        $container_nouv .= '<div class="row justify-content-center">';
-        $container_nouv .= '<div class="col-md-12">';
-        $container_nouv .= '<div id="voiture" class="carousel slide" data-bs-ride="carousel">';
-        $container_nouv .= '<div class="carousel-indicators">';
-        $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="0" class="active"></button>';
-        $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="1"></button>';
-        $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="2"></button>';
-        $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="3"></button>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<div class="carousel-inner">';
-        $container_nouv .= '<div class="carousel-item active">';
-        $container_nouv .= '<img src="'. $row["photo_1"] .'" alt="" height="100%" width="100%" class="d-block" style="width:100%" id="img-voitures">';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<div class="carousel-item">';
-        $container_nouv .= '<img src="'. $row["photo_2"] .'" alt="" height="100%" width="100%" class="d-block" style="width:100%" id="img-voitures">';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<div class="carousel-item">';
-        $container_nouv .= '<img src="'. $row["photo_3"] .'" alt="" height="100%" width="100%" class="d-block" style="width:100%" id="img-voitures">';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<div class="carousel-item">';
-        $container_nouv .= '<img src="'. $row["photo_4"] .'" alt="" height="100%" width="100%" class="d-block" style="width:100%" id="img-voitures">';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<br><br>';
-        $container_nouv .= '<div class="row justify-content-center">';
-        $container_nouv .= '<div class="col-md-6">';
+// Récupération des données de la base
+$query = "SELECT * FROM voitures WHERE marque='MERCEDES'";
+$result = $connexion->query($query);
 
-        // Vérification de l'utilisateur connecté
+// Construire le container Bootstrap avec les données de la voiture
+$container_nouv = '<div class="container mt-4">';
+$container_nouv .= '<div class="row g-4">'; // Début de la ligne avec espacement entre les colonnes
+
+if ($result->num_rows > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Début de la carte
+        $container_nouv .= '<div class="col-lg-3 col-md-4 col-sm-6">'; // Responsive columns
+        $container_nouv .= '<div class="card shadow rounded">';
+
+        // Image de la voiture
+        $container_nouv .= '<img src="' . $row["photo_1"] . '" class="card-img-top rounded-top" alt="Photo de ' . $row["nom_modele"] . '">';
+
+        // Corps de la carte
+        $container_nouv .= '<div class="card-body">';
+        $container_nouv .= '<h5 class="card-title text-center">' . $row["nom_modele"] . '</h5>';
+        $container_nouv .= '<p class="card-text text-muted">Prix : <strong>' . $row["prix"] . ' €</strong></p>';
+        $container_nouv .= '</div>';
+
+        // Pied de carte avec les boutons
+        $container_nouv .= '<div class="card-footer bg-white border-0">';
+        $container_nouv .= '<div class="d-flex justify-content-between">';
+
+        // Bouton "Demande d'essai"
         if (isset($_SESSION['nom_utilisateur'])) {
-            // L'utilisateur est connecté, rediriger vers la demande d'essai
-            $container_nouv .= '<a href="../demande_essaie/demande_essai.php">';
+            $container_nouv .= '<a href="../demande_essaie/demande_essai.php" class="btn btn-success flex-fill me-1">Demande essaie</a>';
         } else {
-            // L'utilisateur n'est pas connecté, rediriger vers la page d'inscription
-            $container_nouv .= '<a href="../login/inscription_main.php">';
+            $container_nouv .= '<a href="../login/inscription_main.php" class="btn btn-success flex-fill me-1">Demande essaie</a>';
         }
-        
-        $container_nouv .= '<input class="mon-bouton" type="button" value="Essayer la voiture">';
-        $container_nouv .= '</a>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<br><br>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</section>';
+
+        // Bouton "Voir plus" avec formulaire
+        $container_nouv .= '<a href="affichage_details.php?id=' . $row['id_voiture'] . '" class="btn btn-primary flex-fill me-1">Voir plus</a>';
+
+
+
+        $container_nouv .= '</div>'; // Fin du conteneur des boutons
+        $container_nouv .= '</div>'; // Fin du footer
+        $container_nouv .= '</div>'; // Fin de la carte
+        $container_nouv .= '</div>'; // Fin de la colonne
     }
 } else {
-     $container_nouv = "0 résultats";
- }
- 
- // Affichage du contenu de $container_nouv
- echo $container_nouv;
-  
- // Fermer la connexion à la base de données
- $connexion->close();
- ?>
- 
+    // Afficher un message convivial si aucun résultat n'est trouvé
+    $container_nouv .= '<div class="col-12 text-center">';
+    $container_nouv .= '<p class="text-muted">Aucune voiture Mercedes n\'a été trouvée.</p>';
+    $container_nouv .= '</div>';
+}
+
+$container_nouv .= '</div>'; // Fin de la ligne
+$container_nouv .= '</div>'; // Fin du container
+
+// Affichage du contenu de $container_nouv
+echo $container_nouv;
+
+// Fermer la connexion à la base de données
+$connexion->close();
+?>
+
+ <br><br><br><br> <br><br><br><br>
+
          
 
 

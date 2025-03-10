@@ -38,35 +38,14 @@ if (isset($_SESSION['nom_utilisateur'])) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<style>
-        #card-voiture{
-            border : none ;
-        }
-        #h2-bmw{
-            background-image: url('https://blog.hessautomobile.com/wp-content/uploads/2023/04/bmw-xm-label-red-2.jpg');
-            background-size: cover; /* Redimensionne l'image pour couvrir tout l'arrière-plan */
-            background-position: center; /* Centre l'image */
-            background-attachment: fixed; /* Fixe l'image en place, pour qu'elle reste en arrière-plan lors du défilement */
-            height: 100%; /* 100% de la hauteur de la fenêtre */
-            width: 100%; /* 100% de la largeur de la fenêtre */
-            color: rgb(255, 255, 255);
-                }
-         /* Style de base pour la section */
-        .sct-voiture {
-                padding: 100px; /* Espacement intérieur */
-                transition: transform 1s; /* Transition sur la transformation */
-            }   
-        
-        /* Style au survol */
-        .sct-voiture:hover {
-                    transform: scale(1.2); /* Grandissement au survol */
-                }        
+    <style>
+
     </style>
 
-    <title>BMW</title>
+    <title>Mercedes-Benz</title>
 </head>
 <body>
-    
+
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-dark bg-light">
 
@@ -75,12 +54,13 @@ if (isset($_SESSION['nom_utilisateur'])) {
                 <a class="navbar-brand" href="#">
                     <img src="../../Logo_page/supercar.png" alt="" id = "logo">
                 </a>
-
+        
                 <!-- LE TOGGER A TROIS BARRES -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+        
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto text-center">
                         <li class="nav-item">
@@ -98,108 +78,124 @@ if (isset($_SESSION['nom_utilisateur'])) {
                         <li class="nav-item">
                             <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
                         </li>
+        
                     </ul>
                 </div>
+        
                 <a href="<?php echo $lien_connexion; ?>" class="logo-container">
                     <img src="<?php echo $icone_connexion; ?>" alt="Logo">
-                </a> 
+                </a>
+                
             </div>
         </nav>
-<br><br>
-<div class="row justify-content-center">
-            <div>
-                <h1 align="center" id="h2-bmw">
-                    <br><br><br><br>
-                    "Plaisir de conduire absolu"
-                    <br><br><br><br>
+        <br><br>
 
-                </h1>
-            </div>
+        <div class="row justify-content-center">
+            <h1 align="center">
+                Details voitures
+            </h1>
         </div>
-        <div class="row justify-content-center" id="logo-bmw">
-            <p align="center" id="para-voiture">
-                <br>
-                <a href="1-0-voitures" id="ln-voiture">
-                    <img src="icone_marque/icons8-bmw-48.png" alt="" height="50px" width="50px" > <br>
-                </a>
-            </p> 
-        </div>
-
-<br><br><br><br>        
+        <br><br>
 
 <?php
-// Inclusion de la connexion à la base de données
-include("../../include_bdd/connexion.bdd.php");
+    // Inclure la connexion à la base de données
+    include('../../include_bdd/connexion.bdd.php');
 
-// Vérifie si la connexion est bien établie
-if ($connexion->connect_error) {
-    die("Connexion à la base de données échouée : " . $connexion->connect_error);
-}
+    // Vérifier si l'ID est passé dans l'URL
+    if (isset($_GET['id'])) {
+        $id_voiture = $_GET['id'];
 
-// Récupération des données de la base
-$query = "SELECT * FROM voitures WHERE marque='BMW'";
-$result = $connexion->query($query);
+        // Récupérer les détails de la voiture
+        $query = "SELECT * FROM voitures WHERE id_voiture = ?";
+        if ($stmt = $connexion->prepare($query)) {
+            $stmt->bind_param("i", $id_voiture);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-// Construire le container Bootstrap avec les données de la voiture
-$container_nouv = '<div class="container mt-4">';
-$container_nouv .= '<div class="row g-4">'; // Début de la ligne avec espacement entre les colonnes
+            // Vérifier si une voiture correspond à l'ID
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
 
-if ($result->num_rows > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Début de la carte
-        $container_nouv .= '<div class="col-lg-3 col-md-4 col-sm-6">'; // Responsive columns
-        $container_nouv .= '<div class="card shadow rounded">';
+                // Génération du contenu
+                $container_nouv = '';
+                $container_nouv .= '<section class="sct-voiture">';
+                $container_nouv .= '<div class="row justify-content-center" id="lbl-corps-voiture">';
+                $container_nouv .= '<div class="col-md-5">';
+                $container_nouv .= '<br>';
+                $container_nouv .= '<h1 align="center">'. htmlspecialchars($row["nom_modele"]) .'</h1>';
+                $container_nouv .= '<ul>';
+                $container_nouv .= '<li><img src="icones/icons8-événement-48.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["annee"]) .'</b></li>';
+                $container_nouv .= '<li><img src="icones/icons8-transmission-64.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["transmission"]) .'</b></li>';
+                $container_nouv .= '<li><img src="icones/chauffage-de-siège.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["sieges"]) .'</b></li>';
+                $container_nouv .= '<li><img src="icones/icons8-prix-100.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["prix"]) .' €</b></li>';
+                $container_nouv .= '<li><img src="icones/compteur.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["vitesse_max"]) .' km/h</b></li>';
+                $container_nouv .= '<li><img src="icones/icons8-moteur-100.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["moteur"]) .'</b></li>';
+                $container_nouv .= '<li><img src="icones/pompe-à-essence.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["consommation"]) .'</b></li>';
+                $container_nouv .= '<li><img src="icones/icons8-panneau-chevaux-100.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["puissance"]) .' chevaux</b></li>';
+                $container_nouv .= '</ul>';
+                $container_nouv .= '<h6>'. htmlspecialchars($row["description"]) .'</h6>';
+                $container_nouv .= '<br><br><br>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '<div class="col-md-6">';
+                $container_nouv .= '<br>';
+                $container_nouv .= '<div class="row justify-content-center">';
+                $container_nouv .= '<div class="col-md-12">';
+                $container_nouv .= '<div id="voiture" class="carousel slide" data-bs-ride="carousel">';
+                $container_nouv .= '<div class="carousel-indicators">';
+                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="0" class="active"></button>';
+                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="1"></button>';
+                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="2"></button>';
+                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="3"></button>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '<div class="carousel-inner">';
+                for ($i = 1; $i <= 4; $i++) {
+                    $photo = "photo_$i";
+                    if (!empty($row[$photo])) {
+                        $activeClass = ($i === 1) ? 'active' : '';
+                        $container_nouv .= '<div class="carousel-item '. $activeClass .'">';
+                        $container_nouv .= '<img src="'. htmlspecialchars($row[$photo]) .'" alt="Image '. $i .'" class="d-block w-100" id="img-voitures">';
+                        $container_nouv .= '</div>';
+                    }
+                }
+                $container_nouv .= '</div>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '<br><br>';
+                $container_nouv .= '<div class="row justify-content-center">';
+                $container_nouv .= '<div class="col-md-6">';
+                
+                if (isset($_SESSION['nom_utilisateur'])) {
+                    $container_nouv .= '<a href="../demande_essaie/demande_essai.php">';
+                } else {
+                    $container_nouv .= '<a href="../login/inscription_main.php">';
+                }
+                $container_nouv .= '<input class="mon-bouton" type="button" value="Essayer la voiture">';
+                $container_nouv .= '</a>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '<br><br>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '</div>';
+                $container_nouv .= '</section>';
 
-        // Image de la voiture
-        $container_nouv .= '<img src="' . $row["photo_1"] . '" class="card-img-top rounded-top" alt="Photo de ' . $row["nom_modele"] . '">';
-
-        // Corps de la carte
-        $container_nouv .= '<div class="card-body">';
-        $container_nouv .= '<h5 class="card-title text-center">' . $row["nom_modele"] . '</h5>';
-        $container_nouv .= '<p class="card-text text-muted">Prix : <strong>' . $row["prix"] . ' €</strong></p>';
-        $container_nouv .= '</div>';
-
-        // Pied de carte avec les boutons
-        $container_nouv .= '<div class="card-footer bg-white border-0">';
-        $container_nouv .= '<div class="d-flex justify-content-between">';
-
-        // Bouton "Demande d'essai"
-        if (isset($_SESSION['nom_utilisateur'])) {
-            $container_nouv .= '<a href="../demande_essaie/demande_essai.php" class="btn btn-success flex-fill me-1">Demande essaie</a>';
+                echo $container_nouv;
+            } else {
+                echo '<p>Aucun détail trouvé pour cette voiture.</p>';
+            }
         } else {
-            $container_nouv .= '<a href="../login/inscription_main.php" class="btn btn-success flex-fill me-1">Demande essaie</a>';
+            echo '<p>Erreur lors de la récupération des données.</p>';
         }
-
-        // Bouton "Voir plus" avec formulaire
-        $container_nouv .= '<a href="affichage_details.php?id=' . $row['id_voiture'] . '" class="btn btn-primary flex-fill me-1">Voir plus</a>';
-
-
-
-
-        $container_nouv .= '</div>'; // Fin du conteneur des boutons
-        $container_nouv .= '</div>'; // Fin du footer
-        $container_nouv .= '</div>'; // Fin de la carte
-        $container_nouv .= '</div>'; // Fin de la colonne
+    } else {
+        echo '<p>ID de voiture manquant dans l\'URL.</p>';
     }
-} else {
-    // Afficher un message convivial si aucun résultat n'est trouvé
-    $container_nouv .= '<div class="col-12 text-center">';
-    $container_nouv .= '<p class="text-muted">Aucune voiture Mercedes n\'a été trouvée.</p>';
-    $container_nouv .= '</div>';
-}
-
-$container_nouv .= '</div>'; // Fin de la ligne
-$container_nouv .= '</div>'; // Fin du container
-
-// Affichage du contenu de $container_nouv
-echo $container_nouv;
-
-// Fermer la connexion à la base de données
-$connexion->close();
 ?>
 
- <br><br><br><br> <br><br><br><br>
-   
+
+<br><br>
+
+
+
 </body>
 
 <footer class="footer">
@@ -282,4 +278,5 @@ $connexion->close();
         </div>
     </div>
 </footer>
+
 </html>
