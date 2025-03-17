@@ -16,7 +16,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+  <title> Conditions d'utilisation </title>
   <!-- Liens vers les fichiers CSS de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
@@ -85,74 +85,14 @@ if (isset($_SESSION['nom_utilisateur'])) {
         </div>
     </nav>
 
-    <br><br>
+    <h1 align="center">
+        Conditions d'utilisation
+    </h1>
+    <label for="" align="center">
 
-    <!-- SECTION CONTACT --> 
-    <div class="row justify-content-center">
-        <div class="col-md-4">
-            <!-- Partie de gauche -->
-            <p id="corps_contact">
-                <h3 align="center">Détails de contact</h3><br><br>
-                <h5 align="center">- email : supercar@gmail.com</h5><br><br><br>
-                <h5 align="center">- tel : <br>(+230) 58 99 25 78 12</h5><br><br><br>
-                <h5 align="center">- adresse : <br>TG TOWER, Ebene, Maurice.</h5><br>
-            </p>    
-        </div>
-        <div class="col-md-4">
-        <!-- milieu avec le formulaire -->
-            <p id="corps_contact">
-                <form class="" action="fonction_php/contact.php" method="post" style=""  >
-                    <div class="form-group">
-                        <label for="sexe">Sexe</label>
-                        <select class="form-control" id="sexe" name="sexe">
-                            <option value="homme">Homme</option>
-                            <option value="femme">Femme</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="nom">Nom</label>
-                        <input type="text" class="form-control" id="nom" name="nom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" class="form-control" id="prenom" name="prenom" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
-                    </div><br>
-                    <!-- envoyer la reponse -->
-                    <div class="row justify-content-center">
-                        <div class="col-md-6">
-                            <p align="center"><button type="submit" class="btn btn-success" name="submit">Envoyer</button></p>
-                        </div>
-                        <div class="col-md-6">
-                            <p align="center"><button type="reset" class="btn btn-danger" name="reset">Reinitialiser</button></p>
-                        </div>
-                    </div>
-                </form>
-            </p> 
-        </div>
-        <div class="col-md-4">
-            <p id="corps_contact">
-                <!-- Partie de droite -->        
-                <h5 align="center">NOTRE LOCALISATION <br>
-                    <a href="https://www.google.com/maps/place/NG+Tower/@-20.2475907,57.4886613,17.41z/data=!4m9!1m2!2m1!1smcci!3m5!1s0x217c5b1c17f38899:0x2060b29c1ab59b3e!8m2!3d-20.2476715!4d57.4915392!16s%2Fg%2F11r9blpwh?entry=ttu" target="_blank">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4vw9XZ8X7aTjvMFvxG7ePW5jeOeICDwqMkg&s" alt="Emplacement du site" class="img-fluid">
-                    </a>        
-                </h5>
-            </p>
-        </div>
-    </div>
-    <br><br><br><br>
+    </label>
 
-<!-- LE FOOTER DE NOTRE SITE -->
-
-<footer class="footer">
+    <footer class="footer">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-11">
@@ -179,7 +119,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
                 </div>
             </div>
         </div>
-</footer>
+    </footer>
         <!-- FICHIER JS DE BOOTSTRAP (dans body : eviter ralentir page > pas indispensable) -->
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

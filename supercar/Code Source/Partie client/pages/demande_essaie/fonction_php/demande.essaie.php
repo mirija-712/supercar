@@ -24,13 +24,13 @@ if (mysqli_num_rows($resultat) > 0) {
 
     if (mysqli_affected_rows($connexion) > 0) {
         echo "<h2 align='center'> Merci. Vos données sont bien insérées !!! </h2>";
-        header("refresh:2; url=../../pages/voitures/1-0-voitures.php");
+        header("refresh:2; url=../../voitures/1-0-voitures.php");
     } else {
         echo "<p>Erreur lors de l'insertion des données.</p>";
     }
 } else {
-    echo "<p>Le nom d'utilisateur n'existe pas. La demande n'est pas prise en compte.</p>";
-        header("refresh:2; url= ../../pages/demande_essaie/demande_essai.php");
+    echo "<p align='center'>Le nom d'utilisateur n'existe pas. La demande n'est pas prise en compte.</p>";
+        header("refresh:2; url= ../demande_essai.php");
 
 }
 // fermeture de la connexion avec la base de données

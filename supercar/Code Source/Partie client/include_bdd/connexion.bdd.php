@@ -3,7 +3,7 @@
 $serveur = "localhost"; // ou "127.0.0.1"
 $utilisateur = "root";
 $mot_de_passe = "";
-$nom_bdd = "supercar";
+$nom_bdd = "supercar_officiel";
 
 // Connexion à la base de données
 $connexion = new mysqli($serveur, $utilisateur, $mot_de_passe, $nom_bdd);

@@ -745,25 +745,24 @@ if (isset($_SESSION['nom_utilisateur'])) {
             <div class="row justify-content-center">
                 <div class="col-md-11">
                     <label for="" align="left">
-                            © 2023 SUPER CAR.MU .Tous droits réservés. <br>
+                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
                             | MU.lot54 Battiment4  |
                             | contact@supercar.com |
                             |   +230 3215 8794     |
-                            | <a href="" id="link-footer">
+                            | <a href="pages/politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
                                 Politique de confidentialité
                             </a> |
-                            |  <a href="" id="link-footer">
+                            |  <a href="pages/politique de confidentialité/condition_d'utilisation.php" id="link-footer">
                                 Conditions d'utilisation
                             </a> |
-                            |  <a href="" id="link-footer">
+                            |  <a href="pages/politique de confidentialité/gerer_cookies.php" id="link-footer">
                                 Gérer vos cookies
                             </a> |
-                            |  <a href="" id="link-footer">
+                            |  <a href="pages/politique de confidentialité/mentions_legales.php" id="link-footer">
                                 Mention légales
                             </a> |
-                            |   Suivez-nous sur <img src="icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px">
-                                                <img src="icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px">
-                                                <img src="icones/icone_reseau/icons8-twitter-96.png" alt="" height="20px" width="20px"> | <br>
+                            |   Suivez-nous sur <a href="https://www.facebook.com/"><img src="icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px"></a>
+                                                <a href="https://www.instagram.com/?hl=fr"><img src="icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px"></a> | <br>
                     </label>              
                 </div>
             </div>
