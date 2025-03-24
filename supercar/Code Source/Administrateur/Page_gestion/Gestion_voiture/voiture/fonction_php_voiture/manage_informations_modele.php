@@ -35,7 +35,7 @@ if (isset($_POST['update'])) {
     if (mysqli_query($connexion, $sql1) && mysqli_query($connexion, $sql2)) {
         echo "Informations modifiées avec succès";
         // Rediriger vers la page index après la modification
-        header("Location: ../Page/modification_modele/page/modidier_modele_voiture.php");
+        header("Location: ../Page/modification_modele/page/modifier_modele_voiture.php");
         exit(); // Arrêter l'exécution du script
     } else {
         echo "Erreur de la modification : " . mysqli_error($connexion);

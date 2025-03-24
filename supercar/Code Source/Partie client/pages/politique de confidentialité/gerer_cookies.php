@@ -20,6 +20,9 @@ if (isset($_SESSION['nom_utilisateur'])) {
   <!-- Liens vers les fichiers CSS de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../css/footer.css">
   <style>
         body {
                 background-image: url('https://img2.wallspic.com/previews/4/6/1/1/4/141164/141164-mercedes_benz_classe_s-voiture-voiture_de_luxe_personnels-x750.jpg');
@@ -73,7 +76,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
                     </li>
     
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACTEZ-NOUS</a>
+                    <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
                     </li>
     
                 </ul>
@@ -92,37 +95,58 @@ if (isset($_SESSION['nom_utilisateur'])) {
 
     </label>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <label for="" align="left">
-                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
-                            | MU.lot54 Battiment4  |
-                            | contact@supercar.com |
-                            |   +230 3215 8794     |
-                            | <a href="../politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
-                                Politique de confidentialité
-                            </a> |
-                            |  <a href="../politique de confidentialité/condition_d'utilisation.php" id="link-footer">
-                                Conditions d'utilisation
-                            </a> |
-                            |  <a href="../politique de confidentialité/gerer_cookies.php" id="link-footer">
-                                Gérer vos cookies
-                            </a> |
-                            |  <a href="../politique de confidentialité/mentions_legales.php" id="link-footer">
-                                Mention légales
-                            </a> |
-                            |   Suivez-nous sur <a href="https://www.facebook.com/"><img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px"></a>
-                                                <a href="https://www.instagram.com/?hl=fr"><img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px"></a>| <br>
-                    </label>              
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">Gestion des cookies</h2>
+                            
+                            <h3>Qu'est-ce qu'un cookie ?</h3>
+                            <p>Un cookie est un petit fichier texte stocké sur votre ordinateur lors de la visite d'un site web. Il permet de mémoriser vos préférences et de vous offrir une expérience personnalisée.</p>
+
+                            <h3>Les cookies que nous utilisons</h3>
+                            <ul>
+                                <li><strong>Cookies essentiels :</strong> Nécessaires au fonctionnement du site</li>
+                                <li><strong>Cookies de session :</strong> Pour gérer votre connexion et votre panier</li>
+                                <li><strong>Cookies analytiques :</strong> Pour analyser l'utilisation du site</li>
+                                <li><strong>Cookies de préférences :</strong> Pour mémoriser vos choix</li>
+                            </ul>
+
+                            <h3>Comment gérer vos cookies ?</h3>
+                            <p>Vous pouvez à tout moment modifier vos préférences concernant les cookies en accédant aux paramètres de votre navigateur. Voici comment faire selon votre navigateur :</p>
+                            <ul>
+                                <li>Chrome : Paramètres > Confidentialité et sécurité > Cookies</li>
+                                <li>Firefox : Options > Vie privée et sécurité > Cookies</li>
+                                <li>Safari : Préférences > Confidentialité > Cookies</li>
+                            </ul>
+
+                            <h3>Conséquences de la désactivation des cookies</h3>
+                            <p>La désactivation de certains cookies peut affecter certaines fonctionnalités du site, notamment :</p>
+                            <ul>
+                                <li>La mémorisation de vos préférences</li>
+                                <li>L'accès à votre compte</li>
+                                <li>La personnalisation de votre expérience</li>
+                            </ul>
+
+                            <h3>Mise à jour de notre politique</h3>
+                            <p>Nous nous réservons le droit de modifier cette politique de cookies à tout moment. Les modifications entrent en vigueur dès leur publication sur le site.</p>
+
+                            <h3>Contact</h3>
+                            <p>Pour toute question concernant notre utilisation des cookies, veuillez nous contacter à : privacy@supercar.com</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
-        <!-- FICHIER JS DE BOOTSTRAP (dans body : eviter ralentir page > pas indispensable) -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </section>
+
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

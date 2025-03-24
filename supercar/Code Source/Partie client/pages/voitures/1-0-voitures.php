@@ -28,110 +28,239 @@ if (isset($_SESSION['nom_utilisateur'])) {
     $icone_connexion = "../../icones/icone_connexion/icons8-connexion-96.png"; // Icône de connexion
 }
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/style_steve.css" type="text/css" rel="stylesheet"/>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <title>Voitures</title>
+    <link rel="stylesheet" href="../../css/footer.css">
+    <title>Voitures - Supercar</title>
     <style>
-        #bmw{
+        :root {
+            --primary-color: #4892D7;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Navbar moderne */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Section des marques */
+        .marques-section {
+            padding: 4rem 0;
+        }
+
+        .marque-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .marque-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .marque-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        .marque-card a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .marque-card h4 {
+            margin-top: 1rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        /* Sections voitures */
+        .voiture-section {
+            position: relative;
+            height: 400px;
+            margin: 2rem auto;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        #bmw {
             background-image: url('https://api.freelogodesign.org/assets/blog/thumb/20200501114322210logo-bmw_1176x840.jpg');
-            background-size: cover; /* Redimensionne l'image pour couvrir tout l'arrière-plan */
-            background-position: center; /* Centre l'image */
-            height: 100%; /* 100% de la hauteur de la fenêtre */
-            width: 100%; /* 100% de la largeur de la fenêtre */
-            border-radius: 5px;
         }
-        #merco{
+
+        #merco {
             background-image: url('https://dealerinspire-image-library-prod.s3.us-east-1.amazonaws.com/images/24s7GU1XuU4SqeEUnNc9OokqV2OUduhYyXwEQBqB.jpeg');
-            background-size: cover; /* Redimensionne l'image pour couvrir tout l'arrière-plan */
-            background-position: center; /* Centre l'image */
-            height: 100%; /* 100% de la hauteur de la fenêtre */
-            width: 100%; /* 100% de la largeur de la fenêtre */
-            border-radius: 5px;
         }
-        #audi{
+
+        #audi {
             background-image: url('https://www.designyourway.net/blog/wp-content/uploads/2023/06/Featured-2-1-2.jpg');
-            background-size: cover; /* Redimensionne l'image pour couvrir tout l'arrière-plan */
-            background-position: center; /* Centre l'image */
-            height: 100%; /* 100% de la hauteur de la fenêtre */
-            width: 100%; /* 100% de la largeur de la fenêtre */
-            border-radius: 5px;
         }
-        #porsche{
+
+        #porsche {
             background-image: url('https://cdn.mos.cms.futurecdn.net/PtGq83dYkxTymTsibo4NvU.jpg');
-            background-size: cover; /* Redimensionne l'image pour couvrir tout l'arrière-plan */
-            background-position: center; /* Centre l'image */
-            height: 100%; /* 100% de la hauteur de la fenêtre */
-            width: 100%; /* 100% de la largeur de la fenêtre */
-            border-radius: 5px;
         }
 
-        /* ------------------------------ PARAMETRE DE LA NAVBAR ---------------------------------------- */
-
-    /* LOGO D'INSCRIPTION */
-    .logo-container img 
-    {
-        width: 30px; 
-        height: auto;
-    }
-
-    /* LOGO DE SUPERCAR */
-    #logo
-    {
-        margin-left: 4px; /* DISTANCE ENTRE LE LOGO EST LE BORD */
-        max-width: 60px; /* LARGEUR  */
-        height: auto;
-    }
-
-    .navbar-nav
-    {
-        margin: auto; /* METTRE TOUT AU MILIEU */
-    }
-
-    .navbar-nav .nav-link 
-    {
-        font-weight: bold; /* TEXTE EN GRAS */
-        color: black !important ; /* LE !IMPORTANT PERMET LE PRIORITAIRE */
-    }
-
-    .navbar-nav .nav-item
-    {
-        margin-right: 20px; /* ESPACE ENTRE ITEMS */
-    }
-
-    /* BORDURE LORSQUE ITMES TOUCHE */
-    .navbar-nav .nav-item:hover .nav-link
-    {
-        border: 1px solid #4892D7; 
-        border-radius: 5px; /* COINS ARRONDIS DE 5px */
-        background-color: #4892D7; 
-        color: white; /* LORSQUE BORDURE COULEUR = BLANC */
-    }
-
-    /* Couleur du bouton à trois barres */
-    .navbar-toggler-icon
-    {
-        background-color: rgba(70, 70, 70, 0.261) 
-    }
-
-     /* Style de base pour la section */
-     .sct-voiture {
-            padding: 100px; /* Espacement intérieur */
-            transition: transform 1s; /* Transition sur la transformation */
+        .voiture-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.7));
+            z-index: 1;
         }
-        
-/* Style au survol */
-    .sct-voiture:hover {
-            transform: scale(1.3); /* Grandissement au survol */
+
+        .voiture-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .voiture-content img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .voiture-content label {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Container pour les sections */
+        .sections-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 2rem 0;
+        }
+
+        /* Footer moderne */
+        .footer {
+            background: #000000;
+            color: #ffffff;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid #333;
+        }
+
+        .footer h3 {
+            color: #D4AF37;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .footer a:hover {
+            color: #D4AF37;
+            opacity: 1;
+            text-decoration: none;
+        }
+
+        .social-icons img {
+            transition: transform 0.3s ease;
+            opacity: 0.8;
+            width: 30px;
+            height: 30px;
+            margin: 0 10px;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+
+        .footer-bottom p {
+            color: #ffffff;
+            opacity: 0.7;
+            margin: 0.5rem 0;
         }
     </style>
-
 </head>
 <body>
 
@@ -268,39 +397,41 @@ if (isset($_SESSION['nom_utilisateur'])) {
         <br><br>
     
 
-        <div class="row justify-content-center">
-            <div class="row justify-content-center">
-                <div class="col-md-3">
-                    <p align="center">
-                        <a href="1-1-bmw.php" id="ln-voiture">
-                            <img src="icone_marque/icons8-bmw-48.png" height="50px" width="50px" > <br>
-                            <b> <?php  echo $nom_marque_1; ?> </b>
-                        </a>
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <p align="center">
-                        <a href="1-2-mercedes.php" id="ln-voiture">
-                            <img src="icone_marque/icons8-mercedes-48.png" alt="" height="50px" width="50px" > <br>
-                            <b> <?php  echo $nom_marque_2; ?> </b>
-                        </a>
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <p align="center">
-                        <a href="1-3-audi.php" id="ln-voiture">
-                            <img src="icone_marque/icons8-audi-50.png" alt="" height="50px" width="50px" > <br>
-                            <b> <?php  echo $nom_marque_3; ?> </b>
-                        </a>
-                    </p>
-                </div>
-                <div class="col-md-3">
-                    <p align="center">
-                        <a href="1-4-porsche.php" id="ln-voiture">
-                            <img src="icone_marque/icons8-porsche-48.png" alt="" height="50px" width="50px"> <br>
-                            <b> <?php  echo $nom_marque_4; ?> </b>
-                        </a>
-                    </p>
+        <div class="marques-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="marque-card">
+                            <a href="1-1-bmw.php">
+                                <img src="icone_marque/icons8-bmw-48.png" alt="BMW">
+                                <h4><?php echo $nom_marque_1; ?></h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="marque-card">
+                            <a href="1-2-mercedes.php">
+                                <img src="icone_marque/icons8-mercedes-48.png" alt="Mercedes">
+                                <h4><?php echo $nom_marque_2; ?></h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="marque-card">
+                            <a href="1-3-audi.php">
+                                <img src="icone_marque/icons8-audi-50.png" alt="Audi">
+                                <h4><?php echo $nom_marque_3; ?></h4>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="marque-card">
+                            <a href="1-4-porsche.php">
+                                <img src="icone_marque/icons8-porsche-48.png" alt="Porsche">
+                                <h4><?php echo $nom_marque_4; ?></h4>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -308,168 +439,49 @@ if (isset($_SESSION['nom_utilisateur'])) {
 
 
             <br><br>
-            <section class="sct-voiture">
-                <div class="row justify-content-center" id="bmw">
-                    <div class="col-md-10">
-                        <p align="center" id="para-voiture">
-                            <br>
-                            <a href="1-1-bmw.php" id="ln-voiture">
-                                <img src="icone_marque/icons8-bmw-48.png" alt="" height="50px" width="50px" > <br>
-                            </a>
-                            <br>
-                            <label id="lbl-voiture">
-                            <?php  echo $description_marque_1; ?>
-                            </label>
-                            
-                        </p>
+            <div class="sections-container">
+                <section class="voiture-section" id="bmw">
+                    <div class="voiture-content">
+                        <a href="1-1-bmw.php">
+                            <img src="icone_marque/icons8-bmw-48.png" alt="BMW">
+                        </a>
+                        <label><?php echo $description_marque_1; ?></label>
                     </div>
-                </div>
-            </section>    
-           
+                </section>    
 
-            <br><br>
-
-            <section class="sct-voiture">
-                <div class="row justify-content-center" id="merco">
-
-                    <div class="col-md-10">
-                        <p align="center" id="para-voiture">
-                            <br>
-                            <a href="1-2-mercedes.php" id="ln-voiture">
-                                <img src="icone_marque/icons8-mercedes-48.png" alt="" height="50px" width="50px" > <br>
-                            </a>
-                            <br>
-                            <label id="lbl-voiture">
-                            <?php  echo $description_marque_2; ?>
-                            </label>
-                        </p>
+                <section class="voiture-section" id="merco">
+                    <div class="voiture-content">
+                        <a href="1-2-mercedes.php">
+                            <img src="icone_marque/icons8-mercedes-48.png" alt="Mercedes">
+                        </a>
+                        <label><?php echo $description_marque_2; ?></label>
                     </div>
-                </div>
-            </section>
-                
+                </section>
 
-            <br><br>
-
-            <section class="sct-voiture">
-                <div class="row justify-content-center" id="audi">
-                    <div class="col-md-10">
-                        <p align="center" id="para-voiture">
-                            <br>
-                            <a href="1-3-audi.php" id="ln-voiture">
-                                <img src="icone_marque/icons8-audi-50.png" alt="" height="50px" width="50px" > <br>
-                            </a>
-                            <br>
-                            <label id="lbl-voiture">
-                            <?php  echo $description_marque_3; ?>
-                            </label>
-                        </p>
+                <section class="voiture-section" id="audi">
+                    <div class="voiture-content">
+                        <a href="1-3-audi.php">
+                            <img src="icone_marque/icons8-audi-50.png" alt="Audi">
+                        </a>
+                        <label><?php echo $description_marque_3; ?></label>
                     </div>
-                </div>
-            </section>
-                
+                </section>
 
-            <br><br>
-
-            <section class="sct-voiture">
-                <div class="row justify-content-center" id="porsche">
-                    <div class="col-md-10">
-                        <p align="center" id="para-voiture">
-                            <br>
-                            <a href="1-4-porsche.php" id="ln-voiture">
-                                <img src="icone_marque/icons8-porsche-48.png" alt="" height="50px" width="50px"> <br>
-                            </a>
-                            <br>
-                            <label id="lbl-voiture">
-                            <?php  echo $description_marque_4; ?>
-                            </label>
-                        </p>
+                <section class="voiture-section" id="porsche">
+                    <div class="voiture-content">
+                        <a href="1-4-porsche.php">
+                            <img src="icone_marque/icons8-porsche-48.png" alt="Porsche">
+                        </a>
+                        <label><?php echo $description_marque_4; ?></label>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
 
             
             <br><br><br><br>
                 
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
+
 </body>
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h3>
-                    Accès rapide
-                </h3>
-                    <label for="">
-                        <a href="<?php echo $lien_demande_essai; ?>" id="link-footer">
-                         - Demande d'essai  
-                        </a>
-                        <br>
-                        <a href="../contact/contactez-nous.php" id="link-footer">
-                         - contact
-                        </a>
-                        <br>
-                        <a href="" id="link-footer">
-                         - Les vehicules disponibles 
-                        </a> 
-                    </label>
-            </div>
-                <div class="col-md-4">
-                    <h3>
-                        Modèles
-                    </h3>
-                    <label for="">
-                        <a href="1-1-bmw.php" id="link-footer">
-                            - BMW
-                        </a> 
-                        <br>
-                        <a href="1-2-mercedes.php" id="link-footer">
-                            - Mercedes-Benz
-                        </a>
-                        <br>
-                        <a href="1-3-audi.php" id="link-footer">
-                            - Audi  
-                        </a> 
-                        <br>
-                        <a href="1-4-porsche.php" id="link-footer">
-                           - Porsche  
-                        </a>
-
-                    </label>
-                </div>
-                    <div class="col-md-4">
-                        <h3>
-                         - Evènement
-                        </h3>
-                        <a href="../evenement/evenement.php" id="link-footer">
-                               - Les évènements à venir  
-                        </a>
-                    </div>
-                </div>
-        <div class="row justify-content-center">
-            <div class="col-md-11">
-                <label for="" align="left">
-                        © 2023 SUPER CAR.MU .Tous droits réservés. <br>
-                        | MU.lot54 Battiment4  | 
-                        | contact@supercar.com | 
-                        |   +230 3215 8794     | 
-                        | <a href="" id="link-footer">
-                            Politique de confidentialité
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Conditions d'utilisation
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Gérer vos cookies
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Mention légales
-                        </a> | 
-                            |   Suivez-nous sur <img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px">
-                                                <img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px">
-                                                <img src="../../icones/icone_reseau/icons8-twitter-96.png" alt="" height="20px" width="20px"> | <br>
-                </label>               
-            </div>
-        </div>
-    </div>
-</footer>
-
 </html>

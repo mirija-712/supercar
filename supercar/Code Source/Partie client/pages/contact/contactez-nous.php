@@ -20,6 +20,9 @@ if (isset($_SESSION['nom_utilisateur'])) {
   <!-- Liens vers les fichiers CSS de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../css/footer.css">
   <style>
         body {
                 background-image: url('https://img2.wallspic.com/previews/4/6/1/1/4/141164/141164-mercedes_benz_classe_s-voiture-voiture_de_luxe_personnels-x750.jpg');
@@ -150,39 +153,11 @@ if (isset($_SESSION['nom_utilisateur'])) {
     </div>
     <br><br><br><br>
 
-<!-- LE FOOTER DE NOTRE SITE -->
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
 
-<footer class="footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <label for="" align="left">
-                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
-                            | MU.lot54 Battiment4  |
-                            | contact@supercar.com |
-                            |   +230 3215 8794     |
-                            | <a href="../politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
-                                Politique de confidentialité
-                            </a> |
-                            |  <a href="../politique de confidentialité/condition_d'utilisation.php" id="link-footer">
-                                Conditions d'utilisation
-                            </a> |
-                            |  <a href="../politique de confidentialité/gerer_cookies.php" id="link-footer">
-                                Gérer vos cookies
-                            </a> |
-                            |  <a href="../politique de confidentialité/mentions_legales.php" id="link-footer">
-                                Mention légales
-                            </a> |
-                            |   Suivez-nous sur <a href="https://www.facebook.com/"><img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px"></a>
-                                                <a href="https://www.instagram.com/?hl=fr"><img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px"></a> | <br>
-                    </label>              
-                </div>
-            </div>
-        </div>
-</footer>
-        <!-- FICHIER JS DE BOOTSTRAP (dans body : eviter ralentir page > pas indispensable) -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -12,30 +12,195 @@ if (isset($_SESSION['nom_utilisateur'])) {
     $icone_connexion = "../../icones/icone_connexion/icons8-connexion-96.png"; // Icône de connexion
 }
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Evenement</title>
+    <title>Événements - Supercar</title>
 
     <!-- FICHIER CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/footer.css">
     <style>
+        :root {
+            --primary-color: #4892D7;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
         body {
-                background-image: url('https://sxdrv.com/images/med_64c0c7931066f.jpg');
-                background-size: cover; /* Ensure the image covers the entire screen */
-                background-position: center; /* Keep the image centered */
-                background-repeat: no-repeat; /* No repeating of the background image */
-                background-attachment: fixed; /* Keep the background fixed during scrolling */
-                height: 100vh;
-                margin: 0;
-                padding: 0;
-                color: white; /* Set text color to white for better contrast */
-            }
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://sxdrv.com/images/med_64c0c7931066f.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Navbar moderne */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            color: var(--secondary-color) !important;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Section Événements */
+        .events-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            color: white;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .event-date {
+            font-size: 0.9rem;
+            color: #ecf0f1;
+            margin-bottom: 0.5rem;
+        }
+
+        .event-location {
+            font-size: 0.9rem;
+            color: #ecf0f1;
+            margin-bottom: 1rem;
+        }
+
+        .event-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--primary-color);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        /* Footer moderne */
+        .footer {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 4rem 0 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 1rem;
+        }
+
+        .social-icons img {
+            transition: transform 0.3s ease;
+            height: 20px;
+            width: 20px;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
     </style>
 
 
@@ -48,7 +213,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
         <div class="container"> 
     
             <a class="navbar-brand" href="../../index.php">
-                <img src="../../Logo_page/supercar.png" alt="" id = "logo">
+                <img src="../../Logo_page/supercar.png" alt="Supercar Logo" id="logo">
             </a>
     
             <!-- LE TOGGER A TROIS BARRES -->
@@ -79,7 +244,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
             </div>
     
             <a href="<?php echo $lien_connexion; ?>" class="logo-container">
-                <img src="<?php echo $icone_connexion; ?>" alt="Logo">
+                <img src="<?php echo $icone_connexion; ?>" alt="Connexion">
             </a>
             
         </div>
@@ -87,100 +252,60 @@ if (isset($_SESSION['nom_utilisateur'])) {
     
     <br><br>
 
-    <section class="evenement">
-
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                 <h1 align="center" id="">
-                     <label>
-                        <b>EVENEMENTS ORGANISES PAR SUPERCAR ! </b>
-                     </label>                
-                 </h1>    
-            </div>        
-        </div><br><br><br> 
-
-<?php
- // Inclusion de la connexion à la base de données
- include ("../../include_bdd/connexion.bdd.php");
-
- // Vérifie si la connexion est bien établie
- if ($connexion->connect_error) {
-     die("Connexion à la base de données échouée : " . $connexion->connect_error);
- }
-  
- // Récupération des données de la base
- $query = "SELECT * FROM evenements ";
- $result = $connexion->query($query);
-  
- // Construire le container Bootstrap avec les données de la voiture
- $container_nouv = "";
-  
- if ($result->num_rows > 0) {
-     while($row = mysqli_fetch_assoc($result)) {
-        $container_nouv .= '<div class="row justify-content-center" id="events">';
-        $container_nouv .= '<div class="col-md-6">';
-        $container_nouv .= '<img src="' . $row["photo"] . '" alt="Image de l\'événement">';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<div class="col-md-6">';
-        $container_nouv .= '<h2><b>'. $row["titre"] .'</b></h2>';
-        $container_nouv .= '<p><b id="texte-gras">Date :</b>'. $row["date_evenement"] .'</p>';
-        $container_nouv .= '<p><b id="texte-gras">Heure :</b>'. $row["heure"] .'</p>';
-        $container_nouv .= '<p><b id="texte-gras">Lieu :</b>'. $row["lieu"] .'</p>';
-        $container_nouv .= '<p><b id="texte-gras">Type de voiture :</b>'. $row["type_voiture"] .'</p>';
-        $container_nouv .= '<p><b id="texte-gras">Description de l\'événement :</b>'. $row["description"] .'</p>';
-        $container_nouv .= '<a href="../contact/contactez-nous.php" class="btn">Participer</a>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '</div>';
-        $container_nouv .= '<br><br><br>';
-
-     }
- } else {
-     $container_nouv = "0 résultats";
- }
- 
- // Affichage du contenu de $container_nouv
- echo $container_nouv;
-  
- // Fermer la connexion à la base de données
- $connexion->close();
- ?>
- 
-
-    </section>
-
-    <!-- LE FOOTER DE NOTRE SITE -->
-    <footer class="footer">
+    <section class="events-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <label for="" align="left">
-                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
-                            | MU.lot54 Battiment4  |
-                            | contact@supercar.com |
-                            |   +230 3215 8794     |
-                            | <a href="../politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
-                                Politique de confidentialité
-                            </a> |
-                            |  <a href="../politique de confidentialité/condition_d'utilisation.php" id="link-footer">
-                                Conditions d'utilisation
-                            </a> |
-                            |  <a href="../politique de confidentialité/gerer_cookies.php" id="link-footer">
-                                Gérer vos cookies
-                            </a> |
-                            |  <a href="../politique de confidentialité/mentions_legales.php" id="link-footer">
-                                Mention légales
-                            </a> | <br>
-                    </label>              
-                </div>
+            <h1 class="section-title">Événements Supercar</h1>
+
+            <div class="events-grid">
+                <?php
+                // Inclusion de la connexion à la base de données
+                include ("../../include_bdd/connexion.bdd.php");
+
+                // Vérifie si la connexion est bien établie
+                if ($connexion->connect_error) {
+                    die("Connexion à la base de données échouée : " . $connexion->connect_error);
+                }
+                
+                // Récupération des données de la base
+                $query = "SELECT * FROM evenements";
+                $result = $connexion->query($query);
+                
+                if ($result->num_rows > 0) {
+                    while($row = mysqli_fetch_assoc($result)) {
+                        ?>
+                        <a href="details_evenement.php?id=<?php echo $row['id_evenement']; ?>" class="event-card">
+                            <img src="<?php echo htmlspecialchars($row["photo"]); ?>" alt="Image de l'événement" class="event-image">
+                            <div class="event-content">
+                                <h2 class="event-title"><?php echo htmlspecialchars($row["titre"]); ?></h2>
+                                <div class="event-date">
+                                    <i class="fas fa-calendar"></i> <?php echo htmlspecialchars($row["date_evenement"]); ?> à <?php echo htmlspecialchars($row["heure"]); ?>
+                                </div>
+                                <div class="event-location">
+                                    <i class="fas fa-map-marker-alt"></i> <?php echo htmlspecialchars($row["lieu"]); ?>
+                                </div>
+                                <span class="event-type"><?php echo htmlspecialchars($row["type_voiture"]); ?></span>
+                            </div>
+                        </a>
+                        <?php
+                    }
+                } else {
+                    echo '<div class="alert alert-info text-center">Aucun événement prévu pour le moment.</div>';
+                }
+                
+                // Fermer la connexion à la base de données
+                $connexion->close();
+                ?>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- FICHIER JS DE BOOTSTRAP (dans body : eviter ralentir page > pas indispensable) -->
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </body>
 
 </html>

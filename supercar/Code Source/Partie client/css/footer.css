@@ -1,0 +1,73 @@
+/* Footer moderne */
+.footer {
+    background: #000000 !important;
+    color: #ffffff !important;
+    padding: 4rem 0 2rem;
+    border-top: 1px solid #333;
+}
+
+.footer h3 {
+    color: #D4AF37 !important;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.footer a {
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.footer a:hover {
+    color: #D4AF37 !important;
+    opacity: 1;
+    text-decoration: none;
+}
+
+.social-icons {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 15px !important;
+    margin-top: 1rem !important;
+}
+
+.social-icons img {
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+    width: 30px;
+    height: 30px;
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
+
+.footer-bottom p {
+    color: #ffffff !important;
+    opacity: 0.7;
+    margin: 0.5rem 0;
+}
+
+.footer-bottom a {
+    color: #ffffff !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.footer-bottom a:hover {
+    color: #D4AF37 !important;
+    opacity: 1;
+    text-decoration: none;
+} 

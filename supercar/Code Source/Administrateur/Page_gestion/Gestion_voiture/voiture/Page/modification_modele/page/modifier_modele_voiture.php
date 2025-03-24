@@ -10,20 +10,16 @@ if (!isset($_SESSION['identifiant'])) {
 // mettre en ligne la connexion avec la base de données
 include ("../../../../../../include_bdd/connexion.bdd.php");
 
-// Requête pour récupérer les modèles
-$sql_modele = "SELECT id_modele, nom_modele FROM modele";
-$resultat_modele = $connexion->query($sql_modele);
-
-// Requête pour récupérer les marques
-$sql_marque = "SELECT id_marque, nom_marque FROM marque";
-$resultat_marque = $connexion->query($sql_marque);
+// Récupérer les modèles de voitures triés par la marque (extrait du nom du modèle)
+$sql = "SELECT id_modele, nom_modele FROM modele ORDER BY nom_modele";
+$resultat = $connexion->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajout Modèle - Administration Supercar</title>
+    <title>Modification de Modèle - Administration Supercar</title>
 
     <!-- FICHIER CSS DE BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -92,7 +88,7 @@ $resultat_marque = $connexion->query($sql_marque);
 
         .container {
             padding: 2rem;
-            max-width: 1400px;
+            max-width: 1200px;
         }
 
         .section-title {
@@ -132,16 +128,16 @@ $resultat_marque = $connexion->query($sql_marque);
 
         .form-label {
             font-weight: 500;
-            color: var(--secondary-color);
+            color: var(--primary-color);
             margin-bottom: 0.5rem;
         }
 
-        .form-control {
+        .form-control, .form-select {
             border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            padding: 0.5rem;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .form-control:focus {
@@ -154,12 +150,12 @@ $resultat_marque = $connexion->query($sql_marque);
             color: white;
             border: none;
             border-radius: 6px;
-            padding: 0.8rem 2rem;
-            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
+            font-size: 0.8rem;
         }
 
         .btn-submit:hover {
@@ -170,57 +166,40 @@ $resultat_marque = $connexion->query($sql_marque);
 
         .table {
             margin-bottom: 0;
-            width: 100%;
         }
 
         .table thead th {
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 0.8rem;
+            padding: 0.6rem;
             font-weight: 600;
-            font-size: 0.85rem;
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 1;
-            text-align: center;
+            font-size: 0.8rem;
         }
 
         .table tbody td {
-            padding: 0.5rem;
+            padding: 0.4rem;
             vertical-align: middle;
-            text-align: center;
-            font-size: 0.85rem;
-        }
-
-        .table tbody tr:hover {
-            background-color: rgba(44, 62, 80, 0.02);
-        }
-
-        .table-responsive {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            margin: 0 -1rem;
-            padding: 0 1rem;
+            font-size: 0.8rem;
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: 1rem;
+                padding: 1.5rem 1rem;
             }
             
             .card {
-                padding: 1rem;
+                padding: 1.5rem;
             }
             
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
+        }
 
-            .form-control {
-                padding: 0.5rem 0.8rem;
-            }
+        .card-title {
+            font-size: 1rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
@@ -230,10 +209,10 @@ $resultat_marque = $connexion->query($sql_marque);
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-plus-circle"></i>
-                Ajout Modèle
+                <i class="fas fa-edit"></i>
+                Modification de Modèle
             </a>
-            <a href="../choix_modification_ajouter.php" class="btn back-btn">
+            <a href="../choix_modification_modifier.php" class="btn back-btn">
                 <i class="fas fa-arrow-left"></i>
                 Retour
             </a>
@@ -241,67 +220,73 @@ $resultat_marque = $connexion->query($sql_marque);
     </nav>
 
     <div class="container">
-        <h1 class="section-title">Ajouter un Modèle</h1>
+        <h1 class="section-title">Modifier un Modèle</h1>
         
-        <div class="card">
-            <form action="../../../fonction_php_voiture/manage_informations_modele.php" method="post">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <form action="../../../fonction_php_voiture/manage_informations_modele.php" method="post">
                         <div class="mb-3">
-                            <label for="nom" class="form-label">Nom modèle :</label>
-                            <input type="text" id="nom" name="nom_modele" required class="form-control">
+                            <label for="id_modele" class="form-label">Modèles existants :</label>
+                            <?php 
+                                // Requêter les modèles pour le select
+                                $sql_models = "SELECT id_modele, nom_modele FROM modele ORDER BY nom_modele";
+                                $result_models = $connexion->query($sql_models);
+                                if ($result_models->num_rows > 0) {
+                                    echo "<select name='id_modele' id='id_modele' class='form-control'>";
+                                    echo "<option value=''>Sélectionnez un modèle</option>";
+                                    while ($row = $result_models->fetch_assoc()) {
+                                        echo "<option value='" . $row['id_modele'] . "'>" . $row['nom_modele'] . "</option>";
+                                    }
+                                    echo "</select>";
+                                } else {
+                                    echo "<p class='text-muted'>Aucune information trouvée</p>";
+                                }
+                            ?>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="nom_modele" class="form-label">Nouveau nom modèle :</label>
+                            <input type="text" id="nom_modele" name="nom_modele" class="form-control" required>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="id_marque" class="form-label">Marque :</label>
-                            <select name="id_marque" id="id_marque" required class="form-control">
-                                <option value="">Sélectionner une marque</option>
+                        <button type="submit" name="update" class="btn btn-submit">
+                            <i class="fas fa-save"></i> Modifier
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <h4 class="card-title mb-4">
+                        <i class="fas fa-list"></i>
+                        Liste des Modèles
+                    </h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>    
+                                    <th>Nom Modèle</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <?php
-                                if ($resultat_marque->num_rows > 0) {
-                                    while ($row_marque = $resultat_marque->fetch_assoc()) {
-                                        echo "<option value='" . $row_marque['id_marque'] . "'>" . $row_marque['nom_marque'] . "</option>";
+                                // Affichage des modèles dans le tableau
+                                if ($resultat->num_rows > 0) {
+                                    while ($row_modele = $resultat->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . htmlspecialchars($row_modele["nom_modele"]) . "</td>";
+                                        echo "</tr>";
                                     }
                                 } else {
-                                    echo "<option>Aucune marque trouvée</option>";
+                                    echo "<tr><td class='text-center'>Aucun modèle trouvé.</td></tr>";
                                 }
                                 ?>
-                            </select>
-                        </div>
-
-                        <div class="text-center">
-                            <button type="submit" name="insert" class="btn btn-submit">
-                                <i class="fas fa-plus"></i> Ajouter
-                            </button>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-            </form>
-        </div>
-
-        <h2 class="section-title">Liste des Modèles</h2>
-        
-        <div class="card">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>    
-                            <th>Nom modèle</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        if ($resultat_modele->num_rows > 0) {
-                            while ($row_modele = $resultat_modele->fetch_assoc()) {
-                                echo "<tr>";
-                                echo "<td>" . $row_modele["nom_modele"] . "</td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='1' class='text-center'>Aucun modèle trouvé.</td></tr>";
-                        }
-                        ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

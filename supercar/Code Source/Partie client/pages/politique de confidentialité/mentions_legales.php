@@ -20,6 +20,9 @@ if (isset($_SESSION['nom_utilisateur'])) {
   <!-- Liens vers les fichiers CSS de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../css/footer.css">
   <style>
         body {
                 background-image: url('https://img2.wallspic.com/previews/4/6/1/1/4/141164/141164-mercedes_benz_classe_s-voiture-voiture_de_luxe_personnels-x750.jpg');
@@ -73,7 +76,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
                     </li>
     
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACTEZ-NOUS</a>
+                    <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
                     </li>
     
                 </ul>
@@ -85,68 +88,57 @@ if (isset($_SESSION['nom_utilisateur'])) {
         </div>
     </nav>
 
-    <h1 align="center">
-        Mentions légales
-    </h1>
-    <div class="row">
-        <div class="col-md-4">
-        <label for="" align="center">
-            Éditeur du site <br><br>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card bg-dark text-white">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4">Mentions légales</h2>
+                        
+                        <h3>1. Éditeur du site</h3>
+                        <p>
+                            <strong>Raison sociale :</strong> SuperCar<br>
+                            <strong>Siège social :</strong> MU.lot54 Battiment4<br>
+                            <strong>Numéro d'enregistrement :</strong> [numéro SIRET/équivalent]<br>
+                            <strong>Email de contact :</strong> contact@supercar.com<br>
+                            <strong>Téléphone :</strong> +230 3215 8794
+                        </p>
 
-            Raison sociale : SuperCar <br>
-            Siège social : MU.lot54 Battiment4 <br>
-            Numéro d’enregistrement : [numéro SIRET/équivalent] <br>
-            Email de contact : contact@supercar.com <br>
-            Téléphone : +230 3215 8794  <br> <br>
+                        <h3>2. Hébergeur</h3>
+                        <p>
+                            <strong>Nom :</strong> alwaysData<br>
+                            <strong>Adresse :</strong> 91 rue du Faubourg Saint-Honoré, 75008 Paris, France<br>
+                            <strong>Site web :</strong> www.alwaysdata.com<br>
+                            <strong>Email :</strong> support@alwaysdata.com<br>
+                            <strong>Téléphone :</strong> +33 1 84 16 23 40
+                        </p>
 
-            Hébergeur <br> <br>
+                        <h3>3. Propriété intellectuelle</h3>
+                        <p>Tous les contenus présents sur ce site (textes, images, logos, vidéos) sont la propriété exclusive de SuperCar, sauf mention contraire. Toute reproduction, représentation, modification, publication, transmission, dénaturation, totale ou partielle du site ou de son contenu, par quelque procédé que ce soit, et sur quelque support que ce soit est interdite sans l'autorisation écrite préalable de SuperCar.</p>
 
-            Nom : alwaysData <br>
-            Adresse : 91 rue du Faubourg Saint-Honoré, 75008 Paris, France <br>
-            Site web : www.alwaysdata.com <br>
-            Email : support@alwaysdata.com <br>
-            Téléphone : +33 1 84 16 23 40 <br>
-            Propriété intellectuelle Tous les contenus présents sur ce site (textes, images, logos, vidéos) sont la propriété exclusive de SuperCar, sauf mention contraire. <br> <br>
+                        <h3>4. Liens externes</h3>
+                        <p>Le site peut contenir des liens vers des sites tiers. SuperCar décline toute responsabilité quant au contenu de ces sites. L'insertion de ces liens ne signifie pas que SuperCar approuve les éléments contenus sur ces sites.</p>
 
-            Liens externes Le site peut contenir des liens vers des sites tiers. SuperCar décline toute responsabilité quant au contenu de ces sites. <br> <br>
+                        <h3>5. Protection des données personnelles</h3>
+                        <p>Conformément à la loi en vigueur, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à privacy@supercar.com.</p>
 
-            Données personnelles Conformément à la loi en vigueur, vous disposez d’un droit d’accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à privacy@supercar.com. <br> <br>
-        </label>
-        </div>
-    </div>
+                        <h3>6. Loi applicable</h3>
+                        <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <label for="" align="left">
-                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
-                            | MU.lot54 Battiment4  |
-                            | contact@supercar.com |
-                            |   +230 3215 8794     |
-                            | <a href="../politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
-                                Politique de confidentialité
-                            </a> |
-                            |  <a href="../politique de confidentialité/condition_d'utilisation.php" id="link-footer">
-                                Conditions d'utilisation
-                            </a> |
-                            |  <a href="../politique de confidentialité/gerer_cookies.php" id="link-footer">
-                                Gérer vos cookies
-                            </a> |
-                            |  <a href="../politique de confidentialité/mentions_legales.php" id="link-footer">
-                                Mention légales
-                            </a> |
-                            |   Suivez-nous sur <a href="https://www.facebook.com/"><img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px"></a>
-                                                <a href="https://www.instagram.com/?hl=fr"><img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px"></a> | <br>
-                    </label>              
+                        <h3>7. Crédits</h3>
+                        <p>Design et développement : SuperCar<br>
+                        Images : © SuperCar - Tous droits réservés</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
-    
-        <!-- FICHIER JS DE BOOTSTRAP (dans body : eviter ralentir page > pas indispensable) -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -30,253 +30,359 @@ if (isset($_SESSION['nom_utilisateur'])) {
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
+    <m<html lang="fr">
+<head>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/style_steve.css" type="text/css" rel="stylesheet"/>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
+    <link rel="stylesheet" href="../../css/footer.css">
+    <title>Détails Voiture - Supercar</title>
     <style>
+        :root {
+            --primary-color: #4892D7;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Navbar moderne */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Section Détails */
+        .details-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .car-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .spec-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .spec-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .spec-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .spec-item b {
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+
+        .car-description {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        /* Carousel */
+        .carousel-section {
+            margin: 3rem 0;
+        }
+
+        .carousel {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .carousel-item img {
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .carousel-indicators {
+            bottom: 20px;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+            background-color: rgba(255,255,255,0.5);
+        }
+
+        .carousel-indicators button.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Bouton d'essai */
+        .test-drive-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .test-drive-btn:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* Footer moderne */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons img {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
     </style>
-
-    <title>Mercedes-Benz</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <title>Détails du véhicule - Supercar</title>
 </head>
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-light">
+        <div class="container"> 
+            <a class="navbar-brand" href="#">
+                <img src="../../Logo_page/supercar.png" alt="Supercar Logo" id="logo">
+            </a>
 
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-light">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="container"> 
-        
-                <a class="navbar-brand" href="#">
-                    <img src="../../Logo_page/supercar.png" alt="" id = "logo">
-                </a>
-        
-                <!-- LE TOGGER A TROIS BARRES -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto text-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../index.php">ACCUEIL</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="1-0-voitures.php">VOITURES</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="<?php echo $lien_demande_essai; ?>">DEMANDE ESSAI</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../evenement/evenement.php">EVENEMENTS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
-                        </li>
-        
-                    </ul>
-                </div>
-        
-                <a href="<?php echo $lien_connexion; ?>" class="logo-container">
-                    <img src="<?php echo $icone_connexion; ?>" alt="Logo">
-                </a>
-                
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.php">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="1-0-voitures.php">VOITURES</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<?php echo $lien_demande_essai; ?>">DEMANDE ESSAI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evenement/evenement.php">EVENEMENTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-        <br><br>
 
-        <div class="row justify-content-center">
-            <h1 align="center">
-                Details voitures
-            </h1>
+            <a href="<?php echo $lien_connexion; ?>" class="logo-container">
+                <img src="<?php echo $icone_connexion; ?>" alt="Connexion">
+            </a> 
         </div>
-        <br><br>
+    </nav>
 
-<?php
-    // Inclure la connexion à la base de données
+    <?php
     include('../../include_bdd/connexion.bdd.php');
 
-    // Vérifier si l'ID est passé dans l'URL
     if (isset($_GET['id'])) {
         $id_voiture = $_GET['id'];
 
-        // Récupérer les détails de la voiture
         $query = "SELECT * FROM voitures WHERE id_voiture = ?";
         if ($stmt = $connexion->prepare($query)) {
             $stmt->bind_param("i", $id_voiture);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            // Vérifier si une voiture correspond à l'ID
             if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
+                ?>
+                <section class="details-section">
+                    <div class="container">
+                        <h1 class="car-title"><?php echo htmlspecialchars($row["nom_modele"]); ?></h1>
+                        
+                        <div class="specs-grid">
+                            <div class="spec-item">
+                                <img src="icones/icons8-événement-48.png" alt="Année">
+                                <b><?php echo htmlspecialchars($row["annee"]); ?></b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/icons8-transmission-64.png" alt="Transmission">
+                                <b><?php echo htmlspecialchars($row["transmission"]); ?></b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/chauffage-de-siège.png" alt="Sièges">
+                                <b><?php echo htmlspecialchars($row["sieges"]); ?></b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/icons8-prix-100.png" alt="Prix">
+                                <b><?php echo htmlspecialchars($row["prix"]); ?> €</b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/compteur.png" alt="Vitesse max">
+                                <b><?php echo htmlspecialchars($row["vitesse_max"]); ?> km/h</b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/icons8-moteur-100.png" alt="Moteur">
+                                <b><?php echo htmlspecialchars($row["moteur"]); ?></b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/pompe-à-essence.png" alt="Consommation">
+                                <b><?php echo htmlspecialchars($row["consommation"]); ?></b>
+                            </div>
+                            <div class="spec-item">
+                                <img src="icones/icons8-panneau-chevaux-100.png" alt="Puissance">
+                                <b><?php echo htmlspecialchars($row["puissance"]); ?> chevaux</b>
+                            </div>
+                        </div>
 
-                // Génération du contenu
-                $container_nouv = '';
-                $container_nouv .= '<section class="sct-voiture">';
-                $container_nouv .= '<div class="row justify-content-center" id="lbl-corps-voiture">';
-                $container_nouv .= '<div class="col-md-5">';
-                $container_nouv .= '<br>';
-                $container_nouv .= '<h1 align="center">'. htmlspecialchars($row["nom_modele"]) .'</h1>';
-                $container_nouv .= '<ul>';
-                $container_nouv .= '<li><img src="icones/icons8-événement-48.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["annee"]) .'</b></li>';
-                $container_nouv .= '<li><img src="icones/icons8-transmission-64.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["transmission"]) .'</b></li>';
-                $container_nouv .= '<li><img src="icones/chauffage-de-siège.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["sieges"]) .'</b></li>';
-                $container_nouv .= '<li><img src="icones/icons8-prix-100.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["prix"]) .' €</b></li>';
-                $container_nouv .= '<li><img src="icones/compteur.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["vitesse_max"]) .' km/h</b></li>';
-                $container_nouv .= '<li><img src="icones/icons8-moteur-100.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["moteur"]) .'</b></li>';
-                $container_nouv .= '<li><img src="icones/pompe-à-essence.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["consommation"]) .'</b></li>';
-                $container_nouv .= '<li><img src="icones/icons8-panneau-chevaux-100.png" height="20px" width="20px" alt=""><b> '. htmlspecialchars($row["puissance"]) .' chevaux</b></li>';
-                $container_nouv .= '</ul>';
-                $container_nouv .= '<h6>'. htmlspecialchars($row["description"]) .'</h6>';
-                $container_nouv .= '<br><br><br>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '<div class="col-md-6">';
-                $container_nouv .= '<br>';
-                $container_nouv .= '<div class="row justify-content-center">';
-                $container_nouv .= '<div class="col-md-12">';
-                $container_nouv .= '<div id="voiture" class="carousel slide" data-bs-ride="carousel">';
-                $container_nouv .= '<div class="carousel-indicators">';
-                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="0" class="active"></button>';
-                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="1"></button>';
-                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="2"></button>';
-                $container_nouv .= '<button type="button" data-bs-target="#voiture" data-bs-slide-to="3"></button>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '<div class="carousel-inner">';
-                for ($i = 1; $i <= 4; $i++) {
-                    $photo = "photo_$i";
-                    if (!empty($row[$photo])) {
-                        $activeClass = ($i === 1) ? 'active' : '';
-                        $container_nouv .= '<div class="carousel-item '. $activeClass .'">';
-                        $container_nouv .= '<img src="'. htmlspecialchars($row[$photo]) .'" alt="Image '. $i .'" class="d-block w-100" id="img-voitures">';
-                        $container_nouv .= '</div>';
-                    }
-                }
-                $container_nouv .= '</div>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '<br><br>';
-                $container_nouv .= '<div class="row justify-content-center">';
-                $container_nouv .= '<div class="col-md-6">';
-                
-                if (isset($_SESSION['nom_utilisateur'])) {
-                    $container_nouv .= '<a href="../demande_essaie/demande_essai.php">';
-                } else {
-                    $container_nouv .= '<a href="../login/inscription_main.php">';
-                }
-                $container_nouv .= '<input class="mon-bouton" type="button" value="Essayer la voiture">';
-                $container_nouv .= '</a>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '<br><br>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '</div>';
-                $container_nouv .= '</section>';
+                        <div class="car-description">
+                            <?php echo htmlspecialchars($row["description"]); ?>
+                        </div>
 
-                echo $container_nouv;
+                        <div class="carousel-section">
+                            <div id="voiture" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    <button type="button" data-bs-target="#voiture" data-bs-slide-to="0" class="active"></button>
+                                    <button type="button" data-bs-target="#voiture" data-bs-slide-to="1"></button>
+                                    <button type="button" data-bs-target="#voiture" data-bs-slide-to="2"></button>
+                                    <button type="button" data-bs-target="#voiture" data-bs-slide-to="3"></button>
+                                </div>
+                                <div class="carousel-inner">
+                                    <?php
+                                    for ($i = 1; $i <= 4; $i++) {
+                                        $photo = "photo_$i";
+                                        if (!empty($row[$photo])) {
+                                            $activeClass = ($i === 1) ? 'active' : '';
+                                            echo '<div class="carousel-item ' . $activeClass . '">';
+                                            echo '<img src="' . htmlspecialchars($row[$photo]) . '" alt="Image ' . $i . '" class="d-block w-100">';
+                                            echo '</div>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <?php if (isset($_SESSION['nom_utilisateur'])): ?>
+                                <a href="../demande_essaie/demande_essai.php" class="test-drive-btn">Essayer la voiture</a>
+                            <?php else: ?>
+                                <a href="../login/inscription_main.php" class="test-drive-btn">Essayer la voiture</a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </section>
+                <?php
             } else {
-                echo '<p>Aucun détail trouvé pour cette voiture.</p>';
+                echo '<div class="container text-center mt-5"><p class="alert alert-danger">Aucun détail trouvé pour cette voiture.</p></div>';
             }
         } else {
-            echo '<p>Erreur lors de la récupération des données.</p>';
+            echo '<div class="container text-center mt-5"><p class="alert alert-danger">Erreur lors de la récupération des données.</p></div>';
         }
     } else {
-        echo '<p>ID de voiture manquant dans l\'URL.</p>';
+        echo '<div class="container text-center mt-5"><p class="alert alert-danger">ID de voiture manquant dans l\'URL.</p></div>';
     }
-?>
 
+    $connexion->close();
+    ?>
 
-<br><br>
-
-
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
 
 </body>
-
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h3>
-                    Accès rapide
-                </h3>
-                    <label for="">
-                        <a href="<?php echo $lien_demande_essai; ?>" id="link-footer">
-                         - Demande d'essai  
-                        </a>
-                        <br>
-                        <a href="../contact/contactez-nous.php" id="link-footer">
-                         - contact
-                        </a>
-                        <br>
-                        <a href="" id="link-footer">
-                         - Les vehicules disponibles 
-                        </a> 
-                    </label>
-            </div>
-                <div class="col-md-4">
-                    <h3>
-                        Modèles
-                    </h3>
-                    <label for="">
-                        <a href="1-1-bmw.php" id="link-footer">
-                            - BMW
-                        </a> 
-                        <br>
-                        <a href="1-2-mercedes.php" id="link-footer">
-                            - Mercedes-Benz
-                        </a>
-                        <br>
-                        <a href="1-3-audi.php" id="link-footer">
-                            - Audi  
-                        </a> 
-                        <br>
-                        <a href="1-4-porsche.php" id="link-footer">
-                           - Porsche  
-                        </a>
-
-                    </label>
-                </div>
-                    <div class="col-md-4">
-                        <h3>
-                         - Evènement
-                        </h3>
-                        <a href="../evenement/evenement.php" id="link-footer">
-                               - Les évènements à venir  
-                        </a>
-                    </div>
-                </div>
-        <div class="row justify-content-center">
-            <div class="col-md-11">
-                <label for="" align="left">
-                        © 2023 SUPER CAR.MU .Tous droits réservés. <br>
-                        | MU.lot54 Battiment4  | 
-                        | contact@supercar.com | 
-                        |   +230 3215 8794     | 
-                        | <a href="" id="link-footer">
-                            Politique de confidentialité
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Conditions d'utilisation
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Gérer vos cookies
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Mention légales
-                        </a> | 
-                            |   Suivez-nous sur <img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px">
-                                                <img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px">
-                                                <img src="../../icones/icone_reseau/icons8-twitter-96.png" alt="" height="20px" width="20px"> | <br>
-                </label>               
-            </div>
-        </div>
-    </div>
-</footer>
-
 </html>

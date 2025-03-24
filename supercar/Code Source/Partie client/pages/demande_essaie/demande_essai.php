@@ -37,19 +37,209 @@ if (isset($_SESSION['nom_utilisateur'])) {
     <link href="../voitures/css/style_steve.css" type="text/css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../../css/footer.css">
     <title>Demande d'essai</title>
 
     <style>
+        :root {
+            --primary-color: #4892D7;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
         body {
-            background-image: url('image/pdc.jpg');
-            background-size: cover; /* Ensure the image covers the entire screen */
-            background-position: center; /* Keep the image centered */
-            background-repeat: no-repeat; /* No repeating of the background image */
-            background-attachment: fixed; /* Keep the background fixed during scrolling */
-            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('image/pdc.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
             margin: 0;
             padding: 0;
-            color: white; /* Set text color to white for better contrast */
+        }
+
+        /* Navbar moderne */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            color: var(--secondary-color) !important;
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Formulaire moderne */
+        .form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 2rem 0;
+        }
+
+        .form-title {
+            color: white;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            color: white;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            display: block;
+        }
+
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            color: white;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(72, 146, 215, 0.2);
+            outline: none;
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-reset {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-reset:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: #357abd;
+            transform: translateY(-2px);
+        }
+
+        /* Footer moderne */
+        .footer {
+            background: rgba(44, 62, 80, 0.95);
+            color: white;
+            padding: 2rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-icons img {
+            transition: transform 0.3s ease;
+            height: 20px;
+            width: 20px;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -102,77 +292,58 @@ if ($connexion->connect_error) {
             </div>
         </nav>
         <br><br><br><br><br><br>
-        <div class="row justify-content-center">
-            <br>
-            <div class="col-md-5">
-                <div class="row justify-content-center">
-                        <label id="lbl-demande-esssai">
-                            <h1 align="center" id="txt-contact">Demande d'essai</h1> 
-                            <br>
-                            <form action="fonction_php/demande.essaie.php" method="post">
-                                <label for=""> - Date : (6j/7)</label>
-                                <input type="date" name="date_demande"> <br><br>
-                                <label for=""> - Identifiant :</label>
-                                <input id="plc_name" type="text" name="nom_utilisateur" value="<?php echo htmlspecialchars($nom_utilisateur); ?>"> <br><br>
-                                <label for=""> - Modèle de la voiture :</label>
-                                <?php 
-                                    if ($resultat->num_rows > 0) {
-                                        echo "<select name='nom_modele' id=''>";
-                                        echo "<option>...</option>";
-                                        while ($row = $resultat->fetch_assoc()) {
-                                            echo "<option>" . $row["nom_modele"] . "</option>";
-                                        }
-                                        echo "</select>"; // Fermeture de la balise select
-                                        echo "<br><br>";
-                                    } else {
-                                        echo "<option> Aucune information trouvée </option>";
-                                    }
-                                ?>
-                                    <label for=""> - Heure : (08:00/16:00)</label>
-                                    <input type="time" id="" name="heure_arriver" min="08:00" max="16:00" required> 
-                                    <br><br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-6">
-                                            <input type="reset" value="Réinitialiser">
-                                        </div>
-                                        <div class="col-6">
-                                            <input type="submit" value="Envoyer">
-                                        </div>
-                                        <br><br>
-                                    </div>
-                            </form>
-                        </label>
-                </div>
-            </div>
-        </div><br><br><br><br><br><br><br><br><br>
-</body>
-
-<footer class="footer">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <label for="" align="left">
-                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
-                            | MU.lot54 Battiment4  |
-                            | contact@supercar.com |
-                            |   +230 3215 8794     |
-                            | <a href="../politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
-                                Politique de confidentialité
-                            </a> |
-                            |  <a href="../politique de confidentialité/condition_d'utilisation.php" id="link-footer">
-                                Conditions d'utilisation
-                            </a> |
-                            |  <a href="../politique de confidentialité/gerer_cookies.php" id="link-footer">
-                                Gérer vos cookies
-                            </a> |
-                            |  <a href="../politique de confidentialité/mentions_legales.php" id="link-footer">
-                                Mention légales
-                            </a> |
-                            |   Suivez-nous sur <a href="https://www.facebook.com/"><img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px"></a>
-                                                <a href="https://www.instagram.com/?hl=fr"><img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px"></a> | <br>
-                    </label>              
+                <div class="col-md-6">
+                    <div class="form-container">
+                        <h1 class="form-title">Demande d'essai</h1>
+                        <form action="fonction_php/demande.essaie.php" method="post">
+                            <div class="form-group">
+                                <label class="form-label">Date (6j/7)</label>
+                                <input type="date" name="date_demande" class="form-control" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Identifiant</label>
+                                <input type="text" name="nom_utilisateur" class="form-control" value="<?php echo htmlspecialchars($nom_utilisateur); ?>" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Modèle de la voiture</label>
+                                <?php 
+                                    if ($resultat->num_rows > 0) {
+                                        echo "<select name='nom_modele' class='form-control' required>";
+                                        echo "<option value=''>Sélectionnez un modèle</option>";
+                                        while ($row = $resultat->fetch_assoc()) {
+                                            echo "<option value='" . htmlspecialchars($row["nom_modele"]) . "'>" . htmlspecialchars($row["nom_modele"]) . "</option>";
+                                        }
+                                        echo "</select>";
+                                    } else {
+                                        echo "<p class='text-danger'>Aucune information trouvée</p>";
+                                    }
+                                ?>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Heure (08:00/16:00)</label>
+                                <input type="time" name="heure_arriver" class="form-control" min="08:00" max="16:00" required>
+                            </div>
+
+                            <div class="btn-group">
+                                <button type="reset" class="btn btn-reset">Réinitialiser</button>
+                                <button type="submit" class="btn btn-submit">Envoyer</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-</footer>
+
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

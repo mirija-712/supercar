@@ -20,6 +20,9 @@ if (isset($_SESSION['nom_utilisateur'])) {
   <!-- Liens vers les fichiers CSS de Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../../css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../../css/footer.css">
   <style>
         body {
                 background-image: url('https://img2.wallspic.com/previews/4/6/1/1/4/141164/141164-mercedes_benz_classe_s-voiture-voiture_de_luxe_personnels-x750.jpg');
@@ -73,7 +76,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
                     </li>
     
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACTEZ-NOUS</a>
+                    <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
                     </li>
     
                 </ul>
@@ -92,37 +95,51 @@ if (isset($_SESSION['nom_utilisateur'])) {
 
     </label>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-11">
-                    <label for="" align="left">
-                            © 2025 SUPER CAR.MU .Tous droits réservés. <br>
-                            | MU.lot54 Battiment4  |
-                            | contact@supercar.com |
-                            |   +230 3215 8794     |
-                            | <a href="../politique de confidentialité/politique_de_confidentialite.php" id="link-footer">
-                                Politique de confidentialité
-                            </a> |
-                            |  <a href="../politique de confidentialité/condition_d'utilisation.php" id="link-footer">
-                                Conditions d'utilisation
-                            </a> |
-                            |  <a href="../politique de confidentialité/gerer_cookies.php" id="link-footer">
-                                Gérer vos cookies
-                            </a> |
-                            |  <a href="../politique de confidentialité/mentions_legales.php" id="link-footer">
-                                Mention légales
-                            </a> |
-                            |   Suivez-nous sur <a href="https://www.facebook.com/"><img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px"></a>
-                                                <a href="https://www.instagram.com/?hl=fr"><img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px"></a> | <br>
-                    </label>              
+    <section>
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card bg-dark text-white">
+                        <div class="card-body">
+                            <h2 class="card-title mb-4">Conditions d'utilisation du service d'essai de véhicules</h2>
+                            
+                            <h3>1. Acceptation des conditions</h3>
+                            <p>En accédant et en utilisant le service de réservation d'essai de véhicules proposé par SuperCar, vous acceptez d'être lié par ces conditions d'utilisation.</p>
+
+                            <h3>2. Service proposé</h3>
+                            <p>SuperCar propose un service de réservation d'essai de véhicules de luxe. Ce service permet aux utilisateurs de réserver un créneau horaire pour tester un véhicule de leur choix.</p>
+
+                            <h3>3. Conditions d'éligibilité</h3>
+                            <ul>
+                                <li>Être âgé de 21 ans ou plus</li>
+                                <li>Posséder un permis de conduire valide depuis plus de 2 ans</li>
+                                <li>Fournir une pièce d'identité valide</li>
+                                <li>Fournir une attestation d'assurance automobile</li>
+                            </ul>
+
+                            <h3>4. Réservation et annulation</h3>
+                            <p>Les réservations sont soumises à disponibilité. En cas d'annulation, merci de nous prévenir au moins 24 heures à l'avance. Toute annulation tardive pourra entraîner des frais.</p>
+
+                            <h3>5. Responsabilités</h3>
+                            <p>L'utilisateur s'engage à utiliser le véhicule de manière responsable et respectueuse. En cas de dommages causés au véhicule pendant l'essai, l'utilisateur sera tenu responsable des réparations nécessaires.</p>
+
+                            <h3>6. Modifications des conditions</h3>
+                            <p>SuperCar se réserve le droit de modifier ces conditions à tout moment. Les modifications entrent en vigueur dès leur publication sur le site.</p>
+
+                            <h3>7. Contact</h3>
+                            <p>Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter à : contact@supercar.com</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </footer>
-        <!-- FICHIER JS DE BOOTSTRAP (dans body : eviter ralentir page > pas indispensable) -->
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </section>
+
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

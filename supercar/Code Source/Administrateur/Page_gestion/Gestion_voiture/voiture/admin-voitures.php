@@ -6,147 +6,249 @@ if (!isset($_SESSION['identifiant'])) {
     header("Location: ../../../index.php");
     exit();
 }
-?><!DOCTYPE html>
-<html lang="en">
+?>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="css/bootstrap.css" rel="stylesheet"/>
-    <link href="css/style.css" type="text/css" rel="stylesheet"/>
+    <title>Gestion des Véhicules - Administration Supercar</title>
 
+    <!-- FICHIER CSS DE BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            background-image: url('../voiture/image/pdp.jpg');
-            background-size: cover; 
-            background-repeat: no-repeat; 
-            background-attachment: fixed; 
-            background-position: center;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #c0392b;
+            --background-color: #f8f9fa;
+            --text-color: #2c3e50;
+            --card-bg: #ffffff;
+            --border-color: #e0e0e0;
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
-        /* Style pour la carte */
+        body {
+            background-color: var(--background-color);
+            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: var(--primary-color);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: 600;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .navbar-brand i {
+            font-size: 1.4rem;
+        }
+
+        .back-btn {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
         .card {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        margin: 20px auto;
-        background-color: rgba(255, 255, 255, 0.8); /* Légère transparence pour l'effet de flou */
-        backdrop-filter: blur(20px); /* Ajoute un effet de flou à l'arrière-plan */
-    }
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
 
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        }
 
-        /* Style pour le titre */
-        .card h2 {
-            color: #333;
-            font-size: 24px;
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .card-title i {
+            font-size: 1.4rem;
+            color: var(--accent-color);
+        }
+
+        .btn-action {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 8px 0;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+
+        .btn-action:hover {
+            background: var(--secondary-color);
+            transform: translateX(5px);
+            color: white;
+        }
+
+        .btn-action i {
+            font-size: 1.1rem;
+            width: 20px;
             text-align: center;
         }
 
-        /* Style pour le bouton */
-        .card input[type="button"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
 
-        .card input[type="button"]:hover {
-            background-color: green;
+            .btn-action {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
         }
-
     </style>
-
-    <title>Voitures</title>
-    
 </head>
+
 <body>
-
-    <br><br><br>
-
-    <div class="row justify-content-center">
-        <p align="right">
-            <a href="../../../Accueil_admin/menu-admin.php" class="btn btn-info"> Retour</a>
-        </p>
-        <div class="col-md-6">
-            <div class="card" style="width : 40rem" id="card-modification">
-                    <div class="col-md-12">
-                        <section class="sct-voiture">
-                            <div class="row justify-content-center">
-                                <div class="col-md-12">
-                                    <br>
-                                    <h2 align="center">
-                                    Création modèle
-                                    </h2>
-                                    <br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-2">
-                                            <a href="Page/ajout_modele/choix_modification_ajouter.php">
-                                                <input type="button" value="Afficher">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-            </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-car"></i>
+                Gestion des Véhicules
+            </a>
+            <a href="../../../Accueil_admin/menu-admin.php" class="btn back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour
+            </a>
         </div>
-        <div class="col-md-6">
-            <div class="card" style="width : 40rem" id="card-modification">
-                    <div class="col-md-12">
-                        <section class="sct-voiture">
-                            <div class="row justify-content-center">
-                                <div class="col-md-12">
-                                    <br>
-                                    <h2 align="center">
-                                    Modification modèle  
-                                    </h2>
-                                    <br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-2">
-                                            <a href="Page/modification_modele/choix_modification_modifier.php">
-                                                <input type="button" value="Modifier">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-            </div>
-        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="section-title">Gestion des Modèles</h1>
         
-        <div class="col-md-6">
-            <div class="card" style="width : 40rem" id="card-modification">
-                    <div class="col-md-12">
-                        <section class="sct-voiture">
-                            <div class="row justify-content-center" >
-                                <div class="col-md-12">
-                                    <br>
-                                    <h2 align="center">
-                                    Suppréssion modèle
-                                    </h2>
-                                    <br>
-                                    <div class="row justify-content-center">
-                                        <div class="col-md-2">
-                                            <a href="Page/suppression_modele/page/supprimer_modele_voiture.php">
-                                                <input type="button" value="Modifier" >
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <h4 class="card-title">
+                        <i class="fas fa-plus-circle"></i>
+                        Création Modèle
+                    </h4>
+                    <a href="Page/ajout_modele/choix_modification_ajouter.php" class="btn btn-action">
+                        <i class="fas fa-plus"></i>
+                        Ajouter un Modèle
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <h4 class="card-title">
+                        <i class="fas fa-edit"></i>
+                        Modification Modèle
+                    </h4>
+                    <a href="Page/modification_modele/choix_modification_modifier.php" class="btn btn-action">
+                        <i class="fas fa-pencil-alt"></i>
+                        Modifier un Modèle
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <h4 class="card-title">
+                        <i class="fas fa-trash-alt"></i>
+                        Suppression Modèle
+                    </h4>
+                    <a href="Page/suppression_modele/page/supprimer_modele_voiture.php" class="btn btn-action">
+                        <i class="fas fa-trash"></i>
+                        Supprimer un Modèle
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-    
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 

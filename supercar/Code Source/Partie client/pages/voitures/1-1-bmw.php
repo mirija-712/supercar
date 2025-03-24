@@ -28,258 +28,350 @@ if (isset($_SESSION['nom_utilisateur'])) {
     $icone_connexion = "../../icones/icone_connexion/icons8-connexion-96.png"; // Icône de connexion
 }
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/style_steve.css" type="text/css" rel="stylesheet"/>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-<style>
-        #card-voiture{
-            border : none ;
+    <link rel="stylesheet" href="../../css/footer.css">
+    <title>BMW - Supercar</title>
+    <style>
+        :root {
+            --primary-color: #4892D7;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
         }
-        #h2-bmw{
-            background-image: url('https://blog.hessautomobile.com/wp-content/uploads/2023/04/bmw-xm-label-red-2.jpg');
-            background-size: cover; /* Redimensionne l'image pour couvrir tout l'arrière-plan */
-            background-position: center; /* Centre l'image */
-            background-attachment: fixed; /* Fixe l'image en place, pour qu'elle reste en arrière-plan lors du défilement */
-            height: 100%; /* 100% de la hauteur de la fenêtre */
-            width: 100%; /* 100% de la largeur de la fenêtre */
-            color: rgb(255, 255, 255);
-                }
-         /* Style de base pour la section */
-        .sct-voiture {
-                padding: 100px; /* Espacement intérieur */
-                transition: transform 1s; /* Transition sur la transformation */
-            }   
-        
-        /* Style au survol */
-        .sct-voiture:hover {
-                    transform: scale(1.2); /* Grandissement au survol */
-                }        
-    </style>
 
-    <title>BMW</title>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        /* Navbar moderne */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand img {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            height: 60vh;
+            background-image: url('https://blog.hessautomobile.com/wp-content/uploads/2023/04/bmw-xm-label-red-2.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Section Logo */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .logo-section img {
+            width: 100px;
+            height: 100px;
+            background: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo-section img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            padding: 4rem 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .card-text {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-success {
+            background: linear-gradient(45deg, #D4AF37, #C5A028);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(45deg, #C5A028, #D4AF37);
+            box-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #2c2c2c, #1a1a1a);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Footer moderne */
+        .footer {
+            background: var(--secondary-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .footer a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-icons img {
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons img:hover {
+            transform: scale(1.2);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+    </style>
 </head>
 <body>
-    
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-md navbar-dark bg-light">
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-light">
+        <div class="container"> 
+            <a class="navbar-brand" href="#">
+                <img src="../../Logo_page/supercar.png" alt="Supercar Logo" id="logo">
+            </a>
 
-            <div class="container"> 
-        
-                <a class="navbar-brand" href="#">
-                    <img src="../../Logo_page/supercar.png" alt="" id = "logo">
-                </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <!-- LE TOGGER A TROIS BARRES -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto text-center">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../../index.php">ACCUEIL</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="1-0-voitures.php">VOITURES</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="<?php echo $lien_demande_essai; ?>">DEMANDE ESSAI</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../evenement/evenement.php">EVENEMENTS</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
-                        </li>
-                    </ul>
-                </div>
-                <a href="<?php echo $lien_connexion; ?>" class="logo-container">
-                    <img src="<?php echo $icone_connexion; ?>" alt="Logo">
-                </a> 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../index.php">ACCUEIL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="1-0-voitures.php">VOITURES</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="<?php echo $lien_demande_essai; ?>">DEMANDE ESSAI</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../evenement/evenement.php">EVENEMENTS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
-<br><br>
-<div class="row justify-content-center">
-            <div>
-                <h1 align="center" id="h2-bmw">
-                    <br><br><br><br>
-                    "Plaisir de conduire absolu"
-                    <br><br><br><br>
 
-                </h1>
+            <a href="<?php echo $lien_connexion; ?>" class="logo-container">
+                <img src="<?php echo $icone_connexion; ?>" alt="Connexion">
+            </a> 
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>"Plaisir de conduire absolu"</h1>
+            <p>Découvrez notre collection de BMW</p>
+        </div>
+    </section>
+
+    <!-- Logo Section -->
+    <section class="logo-section">
+        <a href="1-0-voitures.php">
+            <img src="icone_marque/icons8-bmw-48.png" alt="BMW Logo">
+        </a>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="cards-section">
+        <div class="container">
+            <div class="row g-4">
+                <?php
+                include("../../include_bdd/connexion.bdd.php");
+
+                if ($connexion->connect_error) {
+                    die("Connexion à la base de données échouée : " . $connexion->connect_error);
+                }
+
+                $query = "SELECT * FROM voitures WHERE marque='BMW'";
+                $result = $connexion->query($query);
+
+                if ($result->num_rows > 0) {
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '<div class="col-lg-3 col-md-4 col-sm-6">';
+                        echo '<div class="card">';
+                        echo '<img src="' . $row["photo_1"] . '" class="card-img-top" alt="' . $row["nom_modele"] . '">';
+                        echo '<div class="card-body">';
+                        echo '<h5 class="card-title">' . $row["nom_modele"] . '</h5>';
+                        echo '<p class="card-text">Prix : <strong>' . $row["prix"] . ' €</strong></p>';
+                        echo '<div class="d-flex justify-content-between">';
+                        
+                        if (isset($_SESSION['nom_utilisateur'])) {
+                            echo '<a href="../demande_essaie/demande_essai.php" class="btn btn-success">Demande essai</a>';
+                        } else {
+                            echo '<a href="../login/inscription_main.php" class="btn btn-success">Demande essai</a>';
+                        }
+                        
+                        echo '<a href="affichage_details.php?id=' . $row['id_voiture'] . '" class="btn btn-primary">Voir plus</a>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo '<div class="col-12 text-center">';
+                    echo '<p class="text-muted">Aucune voiture BMW n\'a été trouvée.</p>';
+                    echo '</div>';
+                }
+
+                $connexion->close();
+                ?>
             </div>
         </div>
-        <div class="row justify-content-center" id="logo-bmw">
-            <p align="center" id="para-voiture">
-                <br>
-                <a href="1-0-voitures" id="ln-voiture">
-                    <img src="icone_marque/icons8-bmw-48.png" alt="" height="50px" width="50px" > <br>
-                </a>
-            </p> 
-        </div>
+    </section>
 
-<br><br><br><br>        
+    <!-- FOOTER -->
+    <?php include '../../include/footer.php'; ?>
 
-<?php
-// Inclusion de la connexion à la base de données
-include("../../include_bdd/connexion.bdd.php");
-
-// Vérifie si la connexion est bien établie
-if ($connexion->connect_error) {
-    die("Connexion à la base de données échouée : " . $connexion->connect_error);
-}
-
-// Récupération des données de la base
-$query = "SELECT * FROM voitures WHERE marque='BMW'";
-$result = $connexion->query($query);
-
-// Construire le container Bootstrap avec les données de la voiture
-$container_nouv = '<div class="container mt-4">';
-$container_nouv .= '<div class="row g-4">'; // Début de la ligne avec espacement entre les colonnes
-
-if ($result->num_rows > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Début de la carte
-        $container_nouv .= '<div class="col-lg-3 col-md-4 col-sm-6">'; // Responsive columns
-        $container_nouv .= '<div class="card shadow rounded">';
-
-        // Image de la voiture
-        $container_nouv .= '<img src="' . $row["photo_1"] . '" class="card-img-top rounded-top" alt="Photo de ' . $row["nom_modele"] . '">';
-
-        // Corps de la carte
-        $container_nouv .= '<div class="card-body">';
-        $container_nouv .= '<h5 class="card-title text-center">' . $row["nom_modele"] . '</h5>';
-        $container_nouv .= '<p class="card-text text-muted">Prix : <strong>' . $row["prix"] . ' €</strong></p>';
-        $container_nouv .= '</div>';
-
-        // Pied de carte avec les boutons
-        $container_nouv .= '<div class="card-footer bg-white border-0">';
-        $container_nouv .= '<div class="d-flex justify-content-between">';
-
-        // Bouton "Demande d'essai"
-        if (isset($_SESSION['nom_utilisateur'])) {
-            $container_nouv .= '<a href="../demande_essaie/demande_essai.php" class="btn btn-success flex-fill me-1">Demande essaie</a>';
-        } else {
-            $container_nouv .= '<a href="../login/inscription_main.php" class="btn btn-success flex-fill me-1">Demande essaie</a>';
-        }
-
-        // Bouton "Voir plus" avec formulaire
-        $container_nouv .= '<a href="affichage_details.php?id=' . $row['id_voiture'] . '" class="btn btn-primary flex-fill me-1">Voir plus</a>';
-
-
-
-
-        $container_nouv .= '</div>'; // Fin du conteneur des boutons
-        $container_nouv .= '</div>'; // Fin du footer
-        $container_nouv .= '</div>'; // Fin de la carte
-        $container_nouv .= '</div>'; // Fin de la colonne
-    }
-} else {
-    // Afficher un message convivial si aucun résultat n'est trouvé
-    $container_nouv .= '<div class="col-12 text-center">';
-    $container_nouv .= '<p class="text-muted">Aucune voiture Mercedes n\'a été trouvée.</p>';
-    $container_nouv .= '</div>';
-}
-
-$container_nouv .= '</div>'; // Fin de la ligne
-$container_nouv .= '</div>'; // Fin du container
-
-// Affichage du contenu de $container_nouv
-echo $container_nouv;
-
-// Fermer la connexion à la base de données
-$connexion->close();
-?>
-
- <br><br><br><br> <br><br><br><br>
-   
 </body>
-
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h3>
-                    Accès rapide
-                </h3>
-                    <label for="">
-                        <a href="<?php echo $lien_demande_essai; ?>" id="link-footer">
-                         - Demande d'essai  
-                        </a>
-                        <br>
-                        <a href="../contact/contactez-nous.php" id="link-footer">
-                         - contact
-                        </a>
-                        <br>
-                        <a href="" id="link-footer">
-                         - Les vehicules disponibles 
-                        </a> 
-                    </label>
-            </div>
-                <div class="col-md-4">
-                    <h3>
-                        Modèles
-                    </h3>
-                    <label for="">
-                        <a href="1-1-bmw.php" id="link-footer">
-                            - BMW
-                        </a> 
-                        <br>
-                        <a href="1-2-mercedes.php" id="link-footer">
-                            - Mercedes-Benz
-                        </a>
-                        <br>
-                        <a href="1-3-audi.php" id="link-footer">
-                            - Audi  
-                        </a> 
-                        <br>
-                        <a href="1-4-porsche.php" id="link-footer">
-                           - Porsche  
-                        </a>
-
-                    </label>
-                </div>
-                    <div class="col-md-4">
-                        <h3>
-                         - Evènement
-                        </h3>
-                        <a href="../evenement/evenement.php" id="link-footer">
-                               - Les évènements à venir  
-                        </a>
-                    </div>
-                </div>
-        <div class="row justify-content-center">
-            <div class="col-md-11">
-                <label for="" align="left">
-                        © 2023 SUPER CAR.MU .Tous droits réservés. <br>
-                        | MU.lot54 Battiment4  | 
-                        | contact@supercar.com | 
-                        |   +230 3215 8794     | 
-                        | <a href="" id="link-footer">
-                            Politique de confidentialité
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Conditions d'utilisation
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Gérer vos cookies
-                        </a> | 
-                        |  <a href="" id="link-footer">
-                            Mention légales
-                        </a> | 
-                            |   Suivez-nous sur <img src="../../icones/icone_reseau/icons8-facebook-96.png" alt="" height="20px" width="20px">
-                                                <img src="../../icones/icone_reseau/icons8-insta-96.png" alt="" height="20px" width="20px">
-                                                <img src="../../icones/icone_reseau/icons8-twitter-96.png" alt="" height="20px" width="20px"> | <br>
-                </label>               
-            </div>
-        </div>
-    </div>
-</footer>
 </html>
