@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 15, 2025 at 08:43 AM
+-- Generation Time: Apr 15, 2025 at 05:18 PM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -106,9 +106,6 @@ INSERT INTO `admin` (`ID_admin`, `identifiant`, `mot_de_passe`, `date`) VALUES
 (1, 'dshaan', '15112005', '2024-03-17 20:00:00'),
 (3, 'msteve', '12345', '2024-03-17 20:00:00'),
 (6, 'rmahery', '54321', '2024-03-17 20:00:00'),
-(7, 'mouzafara', '0000', '2024-03-26 20:00:00'),
-(8, 'nasser', '4321', '2024-03-26 20:00:00'),
-(10, 'Kix', '0000', '2025-03-27 07:51:59'),
 (11, 'Admin', '0000', '2025-04-14 06:19:27');
 
 -- --------------------------------------------------------
@@ -134,8 +131,7 @@ CREATE TABLE IF NOT EXISTS `client_inscrit` (
 --
 
 INSERT INTO `client_inscrit` (`id_client`, `nom`, `prenom`, `nom_utilisateur`, `e_mail`, `mots_de_passe`, `date_client`) VALUES
-(29, 'Steve', 'Mirija', 'Steve', 'steve@gmail.com', 'NW0vWVNFT0RpL0xadnBxanpGODVqdz09OjpwTzFaN2lTek9DNmUzNE1YNEJlTkNBPT0=', '2025-04-15'),
-(30, 'Bouzy', 'Bouzy', 'Bouzy', 'bouzy@gmail.com', 'T0RXaGlKbnBVM1o3RUI2ZDl6QlhKUT09OjordittVVNtOC9tZ2FmV1V2cDZ5cG1nPT0=', '2025-04-15');
+(29, 'Steve', 'Mirija', 'Steve', 'steve@gmail.com', 'NW0vWVNFT0RpL0xadnBxanpGODVqdz09OjpwTzFaN2lTek9DNmUzNE1YNEJlTkNBPT0=', '2025-04-15');
 
 --
 -- Triggers `client_inscrit`
@@ -206,13 +202,6 @@ CREATE TABLE IF NOT EXISTS `demande_essai` (
   PRIMARY KEY (`id_demande_essai`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `demande_essai`
---
-
-INSERT INTO `demande_essai` (`id_demande_essai`, `date_demande`, `nom_utilisateur`, `nom_modele`, `heure_arriver`, `etat`) VALUES
-(58, '2025-04-15', 'Steve', 'Audi Q8', '14:00', 'en attente');
-
 -- --------------------------------------------------------
 
 --
@@ -254,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `historique_connexion` (
   `type_action` enum('connexion','deconnexion') COLLATE utf8mb4_general_ci NOT NULL,
   `date_heure` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_historique`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
