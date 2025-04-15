@@ -1,33 +1,38 @@
 <?php
-session_start(); // Démarrer la session
+// Démarrer la session
+session_start();
 
-// Vérifier si l'utilisateur est connecté
-if (isset($_SESSION['nom_utilisateur'])) {
-    // Vérifier la durée d'inactivité
-    $timeout_duration = 180; // 180 secondes (3 minutes)
-    
-    // Si la dernière activité est définie et que l'inactivité dépasse 3 minutes, détruire la session
-    if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout_duration)) {
-        session_unset(); // Supprimer toutes les variables de session
-        session_destroy(); // Détruire la session
-        header("Location: ../login/seconnecter.php"); // Rediriger vers la page de connexion
-        exit();
-    }
+// Empêcher la mise en cache du navigateur
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
 
-    // Mettre à jour le timestamp de la dernière activité
-    $_SESSION['last_activity'] = time(); // Réinitialiser le temps d'activité
-
-    // Définir les liens pour les utilisateurs connectés
-    $lien_demande_essai = "../demande_essaie/demande_essai.php";
-    $lien_connexion = "../login/fonction_php/deconnexion.php"; // Lien de déconnexion lorsque l'utilisateur est connecté
-    $icone_connexion = "../../icones/icone_connexion/icons8-logout-96.png"; // Icône de déconnexion
-    $nom_utilisateur = $_SESSION['nom_utilisateur']; // Récupération du nom d'utilisateur
-} else {
-    // Définir les liens pour les utilisateurs non connectés
-    $lien_demande_essai = "../login/seconnecter.php";
-    $lien_connexion = "../login/inscription_main.php"; // Lien d'inscription lorsque l'utilisateur n'est pas connecté
-    $icone_connexion = "../../icones/icone_connexion/icons8-connexion-96.png"; // Icône de connexion
+// Vérification stricte de la session
+if (!isset($_SESSION['nom_utilisateur']) || empty($_SESSION['nom_utilisateur'])) {
+    header("Location: ../login/seconnecter.php");
+    exit();
 }
+
+// Vérifier la durée d'inactivité
+$timeout_duration = 180; // 180 secondes (3 minutes)
+
+// Si la dernière activité est définie et que l'inactivité dépasse 3 minutes, détruire la session
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > $timeout_duration)) {
+    session_unset(); // Supprimer toutes les variables de session
+    session_destroy(); // Détruire la session
+    header("Location: ../login/seconnecter.php"); // Rediriger vers la page de connexion
+    exit();
+}
+
+// Mettre à jour le timestamp de la dernière activité
+$_SESSION['last_activity'] = time(); // Réinitialiser le temps d'activité
+
+// Définir les liens pour les utilisateurs connectés
+$lien_demande_essai = "../demande_essaie/demande_essai.php";
+$lien_connexion = "../login/fonction_php/deconnexion.php"; // Lien de déconnexion lorsque l'utilisateur est connecté
+$icone_connexion = "../../icones/icone_connexion/icons8-logout-96.png"; // Icône de déconnexion
+$nom_utilisateur = $_SESSION['nom_utilisateur']; // Récupération du nom d'utilisateur
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
