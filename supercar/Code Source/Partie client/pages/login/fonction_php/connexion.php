@@ -1,69 +1,118 @@
 <?php
- // Inclusion de la connexion à la base de données
- include ("../../../include_bdd/connexion.bdd.php");
+session_start();
+include("../../../include_bdd/connexion.bdd.php");
 
- // Vérifie si la connexion est bien établie
- if ($connexion->connect_error) {
-     die("Connexion à la base de données échouée : " . $connexion->connect_error);
- }
-
-// Récupérer les données du formulaire
-$nom_utilisateur = $_POST['nom_utilisateur'];
-$mot_de_passe_saisi = $_POST['mot_de_passe'];
-
-// Requête SQL pour récupérer le mot de passe chiffré
-$sql = "SELECT mots_de_passe FROM client_inscrit WHERE nom_utilisateur = ?";
-$stmt = $connexion->prepare($sql);
-$stmt->bind_param("s", $nom_utilisateur);
-$stmt->execute();
-$stmt->store_result();
-
-if ($stmt->num_rows > 0) {
-    $stmt->bind_result($mot_de_passe_crypte);
-    $stmt->fetch();
-
-    // Séparer le mot de passe chiffré et l'IV
-    list($encrypted_password, $stored_iv) = explode('::', base64_decode($mot_de_passe_crypte), 2);
-
-    // Vérifier la longueur de l'IV
-    $iv = base64_decode($stored_iv);
-    if (strlen($iv) !== openssl_cipher_iv_length('aes-256-cbc')) {
-        die("Erreur : Le vecteur d'initialisation (IV) n'a pas la bonne longueur.");
-    }
-
-    // Déchiffrer le mot de passe
-    $key = 'azerty56'; // La même clé utilisée pour le chiffrement
-    $dechiffre_motdepasse = openssl_decrypt($encrypted_password, 'aes-256-cbc', $key, 0, $iv);
-
-    // Vérification si le déchiffrement a réussi
-    if ($dechiffre_motdepasse === false) {
-        die("Erreur lors du déchiffrement du mot de passe.");
-    }
-
-    // Comparer le mot de passe déchiffré avec celui fourni par l'utilisateur
-    if ($dechiffre_motdepasse === $mot_de_passe_saisi) {
-        session_start(); // Démarrer la session
-        $_SESSION['nom_utilisateur'] = $nom_utilisateur; // Enregistrer le nom d'utilisateur dans la session
-        $_SESSION['last_activity'] = time(); // Stocker le timestamp de la dernière activité
-    
-        // Définir un cookie pour mémoriser l'utilisateur
-        setcookie('nom_utilisateur', $nom_utilisateur, time() + (86400 * 30), "/"); // 86400 = 1 jour
-    
-        echo "<br><br><h1 align='center'>Connexion réussie! </h1>";
-        header("refresh:1; url=../../voitures/1-0-voitures.php");
-    }  else {
-        // Identifiant ou mot de passe incorrect
-        echo "<br><br><h1 align='center'>Identifiant ou mot de passe incorrect</h1>";
-        // Rediriger vers la page de demande d'essai après 1 seconde
-        header("refresh:1; url=../seconnecter.php");
-    }
-} else {
-    // Nom d'utilisateur non trouvé
-    echo "<br><br><h1 align='center'>Identifiant incorrect</h1>";
-    header("refresh:1; url=../seconnecter.php");
+// Vérifier la connexion à la base de données
+if ($connexion->connect_error) {
+    die("Erreur de connexion à la base de données : " . $connexion->connect_error);
 }
 
-// Fermer la connexion à la base de données
-$stmt->close();
-$connexion->close();
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nom_utilisateur = $_POST['nom_utilisateur'];
+    $mots_de_passe = $_POST['mot_de_passe'];
+
+    // Vérifier si la table client_inscrit existe
+    $check_table = "SHOW TABLES LIKE 'client_inscrit'";
+    $result = $connexion->query($check_table);
+    if ($result->num_rows == 0) {
+        die("La table client_inscrit n'existe pas");
+    }
+
+    $sql = "SELECT * FROM client_inscrit WHERE nom_utilisateur = ?";
+    $stmt = $connexion->prepare($sql);
+    if ($stmt === false) {
+        die("Erreur de préparation de la requête client : " . $connexion->error);
+    }
+    
+    $stmt->bind_param("s", $nom_utilisateur);
+    if (!$stmt->execute()) {
+        die("Erreur d'exécution de la requête client : " . $stmt->error);
+    }
+    
+    $resultat = $stmt->get_result();
+
+    if ($resultat->num_rows > 0) {
+        $row = $resultat->fetch_assoc();
+        
+        // Déchiffrer le mot de passe stocké
+        $key = 'azerty56';
+        $mot_de_passe_crypte = $row['mots_de_passe'];
+        
+        // Décoder le mot de passe chiffré
+        $decoded = base64_decode($mot_de_passe_crypte);
+        list($encrypted_data, $iv) = explode('::', $decoded, 2);
+        $iv = base64_decode($iv);
+        
+        // Déchiffrer le mot de passe
+        $mot_de_passe_dechiffre = openssl_decrypt($encrypted_data, 'aes-256-cbc', $key, 0, $iv);
+        
+        if ($mot_de_passe_dechiffre === $mots_de_passe) {
+            $_SESSION['nom_utilisateur'] = $nom_utilisateur;
+            $_SESSION['nom'] = $row['nom'];
+            $_SESSION['prenom'] = $row['prenom'];
+            
+            // Vérifier si la table historique_connexion existe
+            $check_historique = "SHOW TABLES LIKE 'historique_connexion'";
+            $result_hist = $connexion->query($check_historique);
+            if ($result_hist->num_rows == 0) {
+                die("La table historique_connexion n'existe pas");
+            }
+            
+            // Enregistrer la connexion dans l'historique
+            $sql_historique = "INSERT INTO historique_connexion (nom_utilisateur, type_action) VALUES (?, 'connexion')";
+            $stmt_historique = $connexion->prepare($sql_historique);
+            if ($stmt_historique === false) {
+                die("Erreur de préparation historique : " . $connexion->error);
+            }
+            
+            $stmt_historique->bind_param("s", $nom_utilisateur);
+            if (!$stmt_historique->execute()) {
+                die("Erreur d'exécution historique : " . $stmt_historique->error);
+            }
+            
+            // Afficher le message de connexion en cours
+            echo '<!DOCTYPE html>
+            <html>
+            <head>
+                <title>Connexion en cours</title>
+                <style>
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        margin: 0;
+                        background-color: #f8f9fa;
+                        font-family: Arial, sans-serif;
+                    }
+                    .message {
+                        text-align: center;
+                        padding: 20px;
+                        background-color: white;
+                        border-radius: 5px;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="message">
+                    <h2>Connexion en cours...</h2>
+                </div>
+            </body>
+            </html>';
+            
+            // Redirection vers la page des voitures après 1 seconde
+            header("refresh:1; url=../../voitures/1-0-voitures.php");
+            exit();
+        } else {
+            $_SESSION['message_erreur'] = "Mot de passe incorrect";
+            header("Location: ../seconnecter.php");
+            exit();
+        }
+    } else {
+        $_SESSION['message_erreur'] = "Nom d'utilisateur incorrect";
+        header("Location: ../seconnecter.php");
+        exit();
+    }
+}
 ?>

@@ -79,6 +79,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
             position: relative;
             height: 100vh;
             overflow: hidden;
+            margin-bottom: 4rem;
         }
 
         .main video {
@@ -101,14 +102,15 @@ if (isset($_SESSION['nom_utilisateur'])) {
 
         /* Section des marques */
         .marques-section {
-            padding: 4rem 0;
+            padding: 6rem 0;
             background: white;
+            margin-bottom: 4rem;
         }
 
         .marque-card {
             background: white;
             border-radius: 15px;
-            padding: 2rem;
+            padding: 3rem;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -138,40 +140,37 @@ if (isset($_SESSION['nom_utilisateur'])) {
         }
 
         /* Sections voitures */
-        .voiture-section {
+        .voitures-section {
             position: relative;
-            height: 400px;
-            margin: 2rem auto;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 90%;
-            max-width: 1200px;
+            padding: 6rem 0;
+            background: #f8f9fa;
+            width: 100%;
+            margin-bottom: 4rem;
         }
 
-        .voiture-content {
-            position: relative;
-            z-index: 2;
-            color: white;
-            padding: 2rem;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(5px);
+        .voitures-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .voitures-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .voitures-section p {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
         }
 
         /* Footer moderne */
         .footer {
             background: var(--secondary-color);
             color: white;
-            padding: 4rem 0 2rem;
+            padding: 6rem 0 2rem;
         }
 
         .footer h3 {
@@ -200,17 +199,155 @@ if (isset($_SESSION['nom_utilisateur'])) {
 
         .footer-bottom {
             border-top: 1px solid rgba(255,255,255,0.1);
-            margin-top: 2rem;
+            margin-top: 4rem;
             padding-top: 2rem;
         }
 
         /* Suppression des effets de survol des vidéos */
         .zoomable-video {
             border: 8px solid #E2E2E2;
+            border-radius: 0;
         }
 
         .zoomable-video:hover {
             border-color: #4cbdda;
+        }
+
+        /* Style pour les cards de voitures */
+        .voiture-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            margin-bottom: 2rem;
+        }
+
+        .voiture-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .voiture-video {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .voiture-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .voiture-content {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .voiture-content h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .explore-btn {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            color: white;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .explore-btn:hover {
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        /* Cards Section */
+        .cards-section {
+            padding: 4rem 0;
+        }
+
+        .card {
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .voiture-video {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .voiture-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .btn {
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #1a1a1a, #2c2c2c);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #2c2c2c, #1a1a1a);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+
+        .qsn-section {
+            padding: 6rem 0;
+            margin-bottom: 4rem;
+        }
+
+        .qsn-card {
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section {
+            padding: 6rem 0;
+            margin-bottom: 4rem;
         }
     </style>
 </head>
@@ -377,11 +514,13 @@ if (isset($_SESSION['nom_utilisateur'])) {
             </div>
         </div>
 
+        <div class="container mt-5">
+            <div class="row g-4">
         <!-- MERCEDES -->
-        <section class="voiture-section" id="mercedes">
-            <div class="voiture-content">
-                <a href="pages/voitures/1-2-mercedes.php">
-                    <video autoplay loop muted class="zoomable-video">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="voiture-video">
+                            <video autoplay loop muted>
                         <?php
                             $sql = "SELECT * FROM accueil WHERE id_partie = 3";
                             $result = $connexion->query($sql);
@@ -392,15 +531,21 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             }
                         ?>        
                     </video>
-                </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mercedes-Benz</h5>
+                            <div class="d-flex justify-content-between">
+                                <a href="pages/voitures/1-2-mercedes.php" class="btn btn-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
             </div>
-        </section>
 
         <!-- BMW -->
-        <section class="voiture-section" id="bmw">
-            <div class="voiture-content">
-                <a href="pages/voitures/1-1-bmw.php">
-                    <video autoplay loop muted class="zoomable-video">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="voiture-video">
+                            <video autoplay loop muted>
                         <?php
                             $sql = "SELECT * FROM accueil WHERE id_partie = 4";
                             $result = $connexion->query($sql);
@@ -411,15 +556,21 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             }
                         ?>        
                     </video>
-                </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">BMW</h5>
+                            <div class="d-flex justify-content-between">
+                                <a href="pages/voitures/1-1-bmw.php" class="btn btn-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
             </div>
-        </section>
 
         <!-- PORSCHE -->
-        <section class="voiture-section" id="porsche">
-            <div class="voiture-content">
-                <a href="pages/voitures/1-4-porsche.php">
-                    <video autoplay loop muted class="zoomable-video">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="voiture-video">
+                            <video autoplay loop muted>
                         <?php
                             $sql = "SELECT * FROM accueil WHERE id_partie = 5";
                             $result = $connexion->query($sql);
@@ -430,31 +581,21 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             }
                         ?>        
                     </video>
-                </a>
-                <div class="container mt-4">
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <?php
-                                $sql = "SELECT * FROM accueil WHERE id_partie = 5";
-                                $result = $connexion->query($sql);
-                                if ($result !== null && $result->num_rows > 0) {
-                                    while ($row = $result->fetch_assoc()) {
-                                        echo "<h3><strong>" . $row["titre"] . "</strong></h3>";
-                                        echo "<p>" . $row["texte"] . "</p>";
-                                    }
-                                }
-                            ?>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Porsche</h5>
+                            <div class="d-flex justify-content-between">
+                                <a href="pages/voitures/1-4-porsche.php" class="btn btn-primary">Explorer</a>
+                            </div>
                         </div>
                     </div>
-                </div>
             </div>
-        </section>
 
         <!-- AUDI -->
-        <section class="voiture-section" id="audi">
-            <div class="voiture-content">
-                <a href="pages/voitures/1-3-audi.php">
-                    <video autoplay loop muted class="zoomable-video">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="voiture-video">
+                            <video autoplay loop muted>
                         <?php
                             $sql = "SELECT * FROM accueil WHERE id_partie = 6";
                             $result = $connexion->query($sql);
@@ -465,9 +606,17 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             }
                         ?>        
                     </video>
-                </a>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Audi</h5>
+                            <div class="d-flex justify-content-between">
+                                <a href="pages/voitures/1-3-audi.php" class="btn btn-primary">Explorer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
     </section>
 
     <!-- SECTION ÉVÉNEMENTS -->

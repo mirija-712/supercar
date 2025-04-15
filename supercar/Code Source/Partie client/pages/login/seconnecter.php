@@ -100,6 +100,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="../contact/contactez-nous.php">CONTACTEZ-NOUS</a>
                     </li>
+                    <?php if (isset($_SESSION['nom_utilisateur'])): ?>
+                        <li><a href="fonction_php/deconnexion.php">Déconnexion</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
             <a href="inscription_main.php" class="logo-container">

@@ -248,13 +248,67 @@ if (isset($_SESSION['nom_utilisateur'])) {
 // Inclusion de la connexion à la base de données
 include ("../../include_bdd/connexion.bdd.php");
 
+// Vérification de la soumission du formulaire
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Vérifier si l'utilisateur est connecté
+    if (!isset($_SESSION['nom_utilisateur'])) {
+        header("Location: ../login/seconnecter.php");
+        exit();
+    }
+
+    // Récupération des données du formulaire
+    $nom_modele = $_POST['nom_modele'];
+    $date_demande = $_POST['date_demande'];
+    $heure_arriver = $_POST['heure_arriver'];
+    $nom_utilisateur = $_SESSION['nom_utilisateur']; // Utiliser le nom d'utilisateur de la session
+    
+    // Vérification de la disponibilité en utilisant la procédure stockée
+    $stmt = $connexion->prepare("CALL VerifierDisponibiliteVoiture(?, ?, ?, @disponible)");
+    $stmt->bind_param("sss", $nom_modele, $date_demande, $heure_arriver);
+    $stmt->execute();
+    
+    // Récupération du résultat
+    $result = $connexion->query("SELECT @disponible as disponible");
+    $row = $result->fetch_assoc();
+    $disponible = $row['disponible'];
+    
+    if ($disponible) {
+        // Vérifier si l'utilisateur n'a pas déjà une demande en attente pour ce modèle
+        $stmt = $connexion->prepare("SELECT COUNT(*) as nb_demandes FROM demande_essai WHERE nom_utilisateur = ? AND nom_modele = ? AND etat = 'en attente'");
+        $stmt->bind_param("ss", $nom_utilisateur, $nom_modele);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        
+        if ($row['nb_demandes'] == 0) {
+            // Insertion de la demande d'essai
+            $stmt = $connexion->prepare("INSERT INTO demande_essai (date_demande, nom_utilisateur, nom_modele, heure_arriver, etat) VALUES (?, ?, ?, ?, 'en attente')");
+            $stmt->bind_param("ssss", $date_demande, $nom_utilisateur, $nom_modele, $heure_arriver);
+            
+            if ($stmt->execute()) {
+                $message_success = "Votre demande d'essai a été enregistrée avec succès !";
+            } else {
+                $message_erreur = "Une erreur est survenue lors de l'enregistrement de votre demande.";
+            }
+        } else {
+            $message_erreur = "Vous avez déjà une demande en attente pour ce modèle.";
+        }
+    } else {
+        $message_erreur = "Désolé, la voiture n'est pas disponible à cette date et heure.";
+    }
+}
+
 // Vérifie si la connexion est bien établie
 if ($connexion->connect_error) {
     die("Connexion à la base de données échouée : " . $connexion->connect_error);
 }
-    // Récupérer les modèles de voitures triés par la marque (extrait du nom du modèle)
-    $sql = "SELECT id_modele, nom_modele FROM modele ORDER BY nom_modele";
-    $resultat = $connexion->query($sql);
+
+// Récupérer les modèles de voitures triés par la marque
+$sql = "SELECT m.nom_modele, ma.nom_marque 
+        FROM modele m 
+        JOIN marque ma ON m.id_marque = ma.id_marque 
+        ORDER BY ma.nom_marque, m.nom_modele";
+$resultat = $connexion->query($sql);
 ?> 
 
         <!-- NAVBAR -->
@@ -297,7 +351,25 @@ if ($connexion->connect_error) {
                 <div class="col-md-6">
                     <div class="form-container">
                         <h1 class="form-title">Demande d'essai</h1>
-                        <form action="fonction_php/demande.essaie.php" method="post">
+                        <?php if (isset($_SESSION['message_success'])): ?>
+                            <div class="alert alert-success" role="alert">
+                                <?php 
+                                    echo $_SESSION['message_success'];
+                                    unset($_SESSION['message_success']);
+                                ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (isset($_SESSION['message_erreur'])): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php 
+                                    echo $_SESSION['message_erreur'];
+                                    unset($_SESSION['message_erreur']);
+                                ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <form action="fonction_php/fonction_demande_essai.php" method="POST">
                             <div class="form-group">
                                 <label class="form-label">Date (6j/7)</label>
                                 <input type="date" name="date_demande" class="form-control" required>
@@ -310,17 +382,17 @@ if ($connexion->connect_error) {
 
                             <div class="form-group">
                                 <label class="form-label">Modèle de la voiture</label>
-                                <?php 
-                                    if ($resultat->num_rows > 0) {
-                                        echo "<select name='nom_modele' class='form-control' required>";
-                                        echo "<option value=''>Sélectionnez un modèle</option>";
-                                        while ($row = $resultat->fetch_assoc()) {
-                                            echo "<option value='" . htmlspecialchars($row["nom_modele"]) . "'>" . htmlspecialchars($row["nom_modele"]) . "</option>";
-                                        }
-                                        echo "</select>";
-                                    } else {
-                                        echo "<p class='text-danger'>Aucune information trouvée</p>";
+                                <?php
+                                if ($resultat->num_rows > 0) {
+                                    echo "<select name='nom_modele' class='form-control' required>";
+                                    echo "<option value=''>Sélectionnez un modèle</option>";
+                                    while ($row = $resultat->fetch_assoc()) {
+                                        echo "<option value='" . htmlspecialchars($row["nom_modele"]) . "'>" . htmlspecialchars($row["nom_modele"]) . "</option>";
                                     }
+                                    echo "</select>";
+                                } else {
+                                    echo "<p class='text-danger'>Aucune information trouvée</p>";
+                                }
                                 ?>
                             </div>
 
