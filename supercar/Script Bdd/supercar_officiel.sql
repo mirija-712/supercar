@@ -26,7 +26,11 @@ DELIMITER $$
 -- Procedures
 --
 DROP PROCEDURE IF EXISTS `VerifierDisponibiliteVoiture`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `VerifierDisponibiliteVoiture` (IN `p_nom_modele` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci, IN `p_date_demande` DATE, IN `p_heure_arriver` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci, OUT `p_disponible` BOOLEAN)   BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `VerifierDisponibiliteVoiture` 
+(IN `p_nom_modele` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci, 
+IN `p_date_demande` DATE, 
+IN `p_heure_arriver` VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci, 
+OUT `p_disponible` BOOLEAN)   BEGIN
     DECLARE nb_demandes INT DEFAULT 0;
     
     SELECT COUNT(*) INTO nb_demandes
