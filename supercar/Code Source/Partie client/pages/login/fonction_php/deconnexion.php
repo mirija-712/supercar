@@ -47,12 +47,42 @@ if (isset($_SESSION['nom_utilisateur'])) {
     session_destroy();   // Détruit la session
     session_write_close(); // Ferme la session
     
-    // Redirection immédiate vers la page de connexion avec un paramètre nocache
-    header("Location: ../seconnecter.php?nocache=" . time());
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Déconnexion</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .message {
+                text-align: center;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                color: #28a745;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Déconnexion réussie</h2>
+        </div>
+    </body>
+    </html>';
+    
+    header("refresh:1; url=../seconnecter.php");
     exit();
 } else {
     // Si l'utilisateur n'est pas connecté, rediriger directement
-    header("Location: ../seconnecter.php?nocache=" . time());
+    header("Location: ../seconnecter.php");
     exit();
 }
 ?>

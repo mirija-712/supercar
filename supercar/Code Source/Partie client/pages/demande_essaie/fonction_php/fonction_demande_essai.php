@@ -23,6 +23,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nom_modele = $_POST["nom_modele"];
         $heure_arriver = $_POST["heure_arriver"];
 
+        // Création des objets DateTime pour la comparaison
+        $date_heure_demande = DateTime::createFromFormat('Y-m-d H:i', $date_demande . ' ' . $heure_arriver);
+        $date_heure_actuelle = new DateTime();
+
+        // Vérification que la date et l'heure ne sont pas dans le passé
+        if ($date_heure_demande < $date_heure_actuelle) {
+            $_SESSION['message_erreur'] = "La date et l'heure de la demande ne peuvent pas être dans le passé.";
+            header("Location: ../demande_essai.php");
+            exit();
+        }
+
+        // Vérification des horaires d'ouverture (9h-18h)
+        $heure_arriver_obj = DateTime::createFromFormat('H:i', $heure_arriver);
+        $heure_ouverture = DateTime::createFromFormat('H:i', '09:00');
+        $heure_fermeture = DateTime::createFromFormat('H:i', '18:00');
+        
+        if ($heure_arriver_obj < $heure_ouverture || $heure_arriver_obj > $heure_fermeture) {
+            $_SESSION['message_erreur'] = "Les demandes d'essai ne sont possibles qu'entre 9h et 18h.";
+            header("Location: ../demande_essai.php");
+            exit();
+        }
+
         // Vérifier si l'utilisateur existe
         $verifier_utilisateur = "SELECT * FROM client_inscrit WHERE nom_utilisateur = ?";
         $stmt = $connexion->prepare($verifier_utilisateur);
@@ -31,34 +53,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $resultat = $stmt->get_result();
 
         if ($resultat->num_rows > 0) {
-            // Vérifier d'abord si l'utilisateur a déjà une demande en attente pour ce modèle
+            // Vérifier d'abord si l'utilisateur a déjà une demande en attente pour ce modèle à la même date
             $verifier_demande = "SELECT COUNT(*) as nb_demandes FROM demande_essai 
                                WHERE nom_utilisateur = ? 
                                AND nom_modele = ? 
+                               AND date_demande = ?
                                AND (etat = 'en attente' OR etat = 'confirmé')";
             $stmt = $connexion->prepare($verifier_demande);
-            $stmt->bind_param("ss", $nom_utilisateur, $nom_modele);
+            $stmt->bind_param("sss", $nom_utilisateur, $nom_modele, $date_demande);
             $stmt->execute();
             $result = $stmt->get_result();
             $row = $result->fetch_assoc();
             
             if ($row['nb_demandes'] > 0) {
-                $_SESSION['message_erreur'] = "Vous avez déjà une demande en attente ou confirmée pour ce modèle. Veuillez attendre la réponse à votre première demande.";
+                $_SESSION['message_erreur'] = "Vous avez déjà une demande en attente ou confirmée pour ce modèle à cette date. Veuillez choisir une autre date ou un autre modèle.";
             } else {
                 // Vérification de la disponibilité
-                $verifier_disponibilite = "SELECT COUNT(*) as nb_demandes 
-                                          FROM demande_essai 
-                                          WHERE nom_modele = ? 
-                                          AND date_demande = ? 
-                                          AND heure_arriver = ? 
-                                          AND (etat = 'en attente' OR etat = 'confirmé')";
+                $verifier_disponibilite = "CALL VerifierDisponibiliteVoiture(?, ?, ?, @disponible)";
                 $stmt = $connexion->prepare($verifier_disponibilite);
                 $stmt->bind_param("sss", $nom_modele, $date_demande, $heure_arriver);
                 $stmt->execute();
-                $result = $stmt->get_result();
+                $stmt->close();  // Important : fermer le premier statement
+                
+                // Récupérer le résultat
+                $result = $connexion->query("SELECT @disponible as disponible");
                 $row = $result->fetch_assoc();
                 
-                if ($row['nb_demandes'] > 0) {
+                if ($row['disponible'] == 0) {  // Vérification explicite de la valeur 0
                     $_SESSION['message_erreur'] = "Désolé, la voiture n'est pas disponible à cette date et heure. Une autre demande est déjà en attente ou confirmée.";
                     header("Location: ../demande_essai.php");
                     exit();

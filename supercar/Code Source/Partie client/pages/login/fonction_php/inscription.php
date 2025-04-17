@@ -27,12 +27,76 @@ $confirmation_mots_de_passe = $_POST["confirmation_mots_de_passe"];
 
 // Vérifier si les champs ne sont pas vides
 if (empty($nom) || empty($prenom) || empty($nom_utilisateur) || empty($e_mail) || empty($mot_de_passe) || empty($confirmation_mots_de_passe)) {
-    die("<p>Veuillez remplir tous les champs.</p>");
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Erreur d\'inscription</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .message {
+                text-align: center;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Erreur d\'inscription</h2>
+            <p>Veuillez remplir tous les champs du formulaire.</p>
+        </div>
+    </body>
+    </html>';
+    header("refresh:1; url=../inscription_main.php");
+    exit();
 }
 
 // Vérifier si les mots de passe correspondent
 if ($mot_de_passe !== $confirmation_mots_de_passe) {
-    die("<p>Les mots de passe ne correspondent pas.</p>");
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Erreur d\'inscription</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .message {
+                text-align: center;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Erreur d\'inscription</h2>
+            <p>Les mots de passe ne correspondent pas.</p>
+        </div>
+    </body>
+    </html>';
+    header("refresh:1; url=../inscription_main.php");
+    exit();
 }
 
 // Définir une clé de chiffrement
@@ -61,8 +125,38 @@ if (!$stmt->execute()) {
 $stmt->store_result();
 
 if ($stmt->num_rows > 0) {
-    echo "<br><br><br><h1 align='center'>Le nom d'utilisateur '$nom_utilisateur' existe déjà. Veuillez en choisir un autre.</h1>";
-    header("refresh:3; url=../inscription_main.php");
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Erreur d\'inscription</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .message {
+                text-align: center;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Erreur d\'inscription</h2>
+            <p>Le nom d\'utilisateur "' . htmlspecialchars($nom_utilisateur) . '" existe déjà. Veuillez en choisir un autre.</p>
+        </div>
+    </body>
+    </html>';
+    header("refresh:1; url=../inscription_main.php");
     exit();
 }
 
@@ -76,13 +170,71 @@ $inserer->bind_param("sssss", $nom, $prenom, $nom_utilisateur, $e_mail, $mot_de_
 
 // Exécuter la requête
 if ($inserer->execute()) {
-    // Afficher les informations de débogage
-    echo "<h2 align='center'>Inscription réussie !</h2>";
-    echo "<p align='center'>Mot de passe original : " . $mot_de_passe . "</p>";
-    echo "<p align='center'>Mot de passe chiffré : " . $mot_de_passe_crypte . "</p>";
-    header("refresh:5; url=../seconnecter.php");
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Inscription</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .message {
+                text-align: center;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                color: #28a745;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Inscription réussie !</h2>
+        </div>
+    </body>
+    </html>';
+    header("refresh:1; url=../seconnecter.php");
 } else {
-    die("Erreur lors de l'insertion : " . $inserer->error);
+    echo '<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Erreur d\'inscription</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #f8f9fa;
+                font-family: Arial, sans-serif;
+            }
+            .message {
+                text-align: center;
+                padding: 20px;
+                background-color: white;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                color: #dc3545;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="message">
+            <h2>Erreur d\'inscription</h2>
+            <p>Une erreur est survenue lors de l\'inscription. Veuillez réessayer.</p>
+        </div>
+    </body>
+    </html>';
+    header("refresh:1; url=../inscription_main.php");
+    exit();
 }
 
 // Fermeture de la connexion avec la base de données
