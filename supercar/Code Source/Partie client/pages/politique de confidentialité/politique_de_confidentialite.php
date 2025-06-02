@@ -105,13 +105,44 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             
                             <h3>1. Collecte des données personnelles</h3>
                             <p>Nous collectons les informations suivantes :</p>
-                            <ul>
-                                <li>Nom et prénom</li>
-                                <li>Adresse email</li>
-                                <li>Numéro de téléphone</li>
-                                <li>Informations sur le permis de conduire</li>
-                                <li>Données de réservation d'essai</li>
-                            </ul>
+                            <div class="table-responsive">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Type de données</th>
+                                            <th>Finalité</th>
+                                            <th>Base légale</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Nom et prénom</td>
+                                            <td>Identification</td>
+                                            <td>Exécution du contrat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Adresse email</td>
+                                            <td>Communication</td>
+                                            <td>Exécution du contrat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Numéro de téléphone</td>
+                                            <td>Contact</td>
+                                            <td>Exécution du contrat</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Informations permis</td>
+                                            <td>Vérification éligibilité</td>
+                                            <td>Obligation légale</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Données de réservation</td>
+                                            <td>Gestion des essais</td>
+                                            <td>Exécution du contrat</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <h3>2. Utilisation des données</h3>
                             <p>Vos données sont utilisées pour :</p>
@@ -120,10 +151,18 @@ if (isset($_SESSION['nom_utilisateur'])) {
                                 <li>Vous contacter concernant votre demande</li>
                                 <li>Améliorer nos services</li>
                                 <li>Vous envoyer des informations sur nos véhicules (avec votre consentement)</li>
+                                <li>Respecter nos obligations légales</li>
                             </ul>
 
                             <h3>3. Protection des données</h3>
-                            <p>Nous mettons en œuvre des mesures de sécurité appropriées pour protéger vos données personnelles contre tout accès non autorisé, modification, divulgation ou destruction.</p>
+                            <p>Nous mettons en œuvre des mesures de sécurité appropriées :</p>
+                            <ul>
+                                <li>Chiffrement des données sensibles</li>
+                                <li>Accès restreint aux données</li>
+                                <li>Surveillance régulière des systèmes</li>
+                                <li>Formation du personnel</li>
+                                <li>Audits de sécurité réguliers</li>
+                            </ul>
 
                             <h3>4. Vos droits</h3>
                             <p>Conformément au RGPD, vous disposez des droits suivants :</p>
@@ -133,20 +172,51 @@ if (isset($_SESSION['nom_utilisateur'])) {
                                 <li>Droit à l'effacement</li>
                                 <li>Droit d'opposition au traitement</li>
                                 <li>Droit à la portabilité des données</li>
+                                <li>Droit de limitation du traitement</li>
+                                <li>Droit de retirer votre consentement</li>
                             </ul>
 
                             <h3>5. Conservation des données</h3>
-                            <p>Nous conservons vos données personnelles pendant la durée nécessaire à la réalisation des finalités pour lesquelles elles ont été collectées, et au maximum pendant 3 ans après votre dernière interaction avec nous.</p>
+                            <div class="table-responsive">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Type de données</th>
+                                            <th>Durée de conservation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Données de compte</td>
+                                            <td>3 ans après dernière activité</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Données de réservation</td>
+                                            <td>5 ans (obligation légale)</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Données de connexion</td>
+                                            <td>1 an</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <h3>6. Partage des données</h3>
                             <p>Nous ne vendons pas vos données personnelles. Nous pouvons les partager avec :</p>
                             <ul>
                                 <li>Nos partenaires de service (assurance, maintenance)</li>
                                 <li>Les autorités légales si requis par la loi</li>
+                                <li>Nos sous-traitants (hébergement, maintenance)</li>
                             </ul>
 
                             <h3>7. Contact</h3>
-                            <p>Pour toute question concernant la protection de vos données personnelles, contactez notre DPO à : privacy@supercar.com</p>
+                            <p>Pour toute question concernant la protection de vos données personnelles :</p>
+                            <ul>
+                                <li>Email : privacy@supercar.com</li>
+                                <li>Téléphone : +230 3215 8794</li>
+                                <li>Adresse : MU.lot54 Battiment4</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

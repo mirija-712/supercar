@@ -310,7 +310,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             </div>
                             <div class="spec-item">
                                 <img src="icones/icons8-prix-100.png" alt="Prix">
-                                <b><?php echo htmlspecialchars($row["prix"]); ?> €</b>
+                                <b><?php echo htmlspecialchars($row["prix"]); ?> $</b>
                             </div>
                             <div class="spec-item">
                                 <img src="icones/compteur.png" alt="Vitesse max">

@@ -104,10 +104,16 @@ if (isset($_SESSION['nom_utilisateur'])) {
                             <h2 class="card-title mb-4">Conditions d'utilisation du service d'essai de véhicules</h2>
                             
                             <h3>1. Acceptation des conditions</h3>
-                            <p>En accédant et en utilisant le service de réservation d'essai de véhicules proposé par SuperCar, vous acceptez d'être lié par ces conditions d'utilisation.</p>
+                            <p>En accédant et en utilisant le service de réservation d'essai de véhicules proposé par SuperCar, vous acceptez d'être lié par ces conditions d'utilisation. Ces conditions constituent un contrat légal entre vous et SuperCar.</p>
 
                             <h3>2. Service proposé</h3>
-                            <p>SuperCar propose un service de réservation d'essai de véhicules de luxe. Ce service permet aux utilisateurs de réserver un créneau horaire pour tester un véhicule de leur choix.</p>
+                            <p>SuperCar propose un service de réservation d'essai de véhicules de luxe. Ce service permet aux utilisateurs de :</p>
+                            <ul>
+                                <li>Réserver un créneau horaire pour tester un véhicule</li>
+                                <li>Consulter les caractéristiques détaillées des véhicules</li>
+                                <li>Bénéficier d'un accompagnement personnalisé</li>
+                                <li>Accéder à des offres exclusives</li>
+                            </ul>
 
                             <h3>3. Conditions d'éligibilité</h3>
                             <ul>
@@ -115,19 +121,38 @@ if (isset($_SESSION['nom_utilisateur'])) {
                                 <li>Posséder un permis de conduire valide depuis plus de 2 ans</li>
                                 <li>Fournir une pièce d'identité valide</li>
                                 <li>Fournir une attestation d'assurance automobile</li>
+                                <li>Ne pas avoir d'antécédents judiciaires liés à la conduite</li>
                             </ul>
 
                             <h3>4. Réservation et annulation</h3>
-                            <p>Les réservations sont soumises à disponibilité. En cas d'annulation, merci de nous prévenir au moins 24 heures à l'avance. Toute annulation tardive pourra entraîner des frais.</p>
+                            <p>Les réservations sont soumises aux conditions suivantes :</p>
+                            <ul>
+                                <li>Disponibilité des véhicules et des créneaux horaires</li>
+                                <li>Annulation possible jusqu'à 24h avant l'essai</li>
+                                <li>Frais d'annulation de 50€ pour toute annulation tardive</li>
+                                <li>Report possible en cas de force majeure</li>
+                            </ul>
 
                             <h3>5. Responsabilités</h3>
-                            <p>L'utilisateur s'engage à utiliser le véhicule de manière responsable et respectueuse. En cas de dommages causés au véhicule pendant l'essai, l'utilisateur sera tenu responsable des réparations nécessaires.</p>
+                            <p>L'utilisateur s'engage à :</p>
+                            <ul>
+                                <li>Utiliser le véhicule de manière responsable et respectueuse</li>
+                                <li>Respecter le code de la route</li>
+                                <li>Ne pas fumer dans le véhicule</li>
+                                <li>Signaler immédiatement tout dommage</li>
+                                <li>Assumer les frais de réparation en cas de dommage</li>
+                            </ul>
 
                             <h3>6. Modifications des conditions</h3>
-                            <p>SuperCar se réserve le droit de modifier ces conditions à tout moment. Les modifications entrent en vigueur dès leur publication sur le site.</p>
+                            <p>SuperCar se réserve le droit de modifier ces conditions à tout moment. Les modifications entrent en vigueur dès leur publication sur le site. L'utilisateur sera informé par email des changements majeurs.</p>
 
                             <h3>7. Contact</h3>
-                            <p>Pour toute question concernant ces conditions d'utilisation, veuillez nous contacter à : contact@supercar.com</p>
+                            <p>Pour toute question concernant ces conditions d'utilisation :</p>
+                            <ul>
+                                <li>Email : contact@supercar.com</li>
+                                <li>Téléphone : +230 3215 8794</li>
+                                <li>Adresse : MU.lot54 Battiment4</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

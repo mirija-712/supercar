@@ -96,38 +96,100 @@ if (isset($_SESSION['nom_utilisateur'])) {
                         <h2 class="card-title mb-4">Mentions légales</h2>
                         
                         <h3>1. Éditeur du site</h3>
-                        <p>
-                            <strong>Raison sociale :</strong> SuperCar<br>
-                            <strong>Siège social :</strong> MU.lot54 Battiment4<br>
-                            <strong>Numéro d'enregistrement :</strong> [numéro SIRET/équivalent]<br>
-                            <strong>Email de contact :</strong> contact@supercar.com<br>
-                            <strong>Téléphone :</strong> +230 3215 8794
-                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr>
+                                        <th>Raison sociale</th>
+                                        <td>SuperCar</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Siège social</th>
+                                        <td>MU.lot54 Battiment4</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Numéro d'enregistrement</th>
+                                        <td>MU123456789</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email de contact</th>
+                                        <td>contact@supercar.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Téléphone</th>
+                                        <td>+230 3215 8794</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <h3>2. Hébergeur</h3>
-                        <p>
-                            <strong>Nom :</strong> alwaysData<br>
-                            <strong>Adresse :</strong> 91 rue du Faubourg Saint-Honoré, 75008 Paris, France<br>
-                            <strong>Site web :</strong> www.alwaysdata.com<br>
-                            <strong>Email :</strong> support@alwaysdata.com<br>
-                            <strong>Téléphone :</strong> +33 1 84 16 23 40
-                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <td>alwaysData</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Adresse</th>
+                                        <td>91 rue du Faubourg Saint-Honoré, 75008 Paris, France</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Site web</th>
+                                        <td>www.alwaysdata.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>support@alwaysdata.com</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Téléphone</th>
+                                        <td>+33 1 84 16 23 40</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                         <h3>3. Propriété intellectuelle</h3>
-                        <p>Tous les contenus présents sur ce site (textes, images, logos, vidéos) sont la propriété exclusive de SuperCar, sauf mention contraire. Toute reproduction, représentation, modification, publication, transmission, dénaturation, totale ou partielle du site ou de son contenu, par quelque procédé que ce soit, et sur quelque support que ce soit est interdite sans l'autorisation écrite préalable de SuperCar.</p>
+                        <p>L'ensemble des éléments constituant le site SuperCar (textes, graphismes, logiciels, photographies, images, vidéos, sons, plans, logos, marques, etc.) sont la propriété exclusive de SuperCar ou de ses partenaires. Toute reproduction, représentation, modification, publication, transmission, dénaturation, totale ou partielle du site ou de son contenu, par quelque procédé que ce soit, et sur quelque support que ce soit est interdite sans l'autorisation écrite préalable de SuperCar.</p>
 
                         <h3>4. Liens externes</h3>
                         <p>Le site peut contenir des liens vers des sites tiers. SuperCar décline toute responsabilité quant au contenu de ces sites. L'insertion de ces liens ne signifie pas que SuperCar approuve les éléments contenus sur ces sites.</p>
 
                         <h3>5. Protection des données personnelles</h3>
-                        <p>Conformément à la loi en vigueur, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ce droit, contactez-nous à privacy@supercar.com.</p>
+                        <p>Conformément à la loi en vigueur, vous disposez des droits suivants :</p>
+                        <ul>
+                            <li>Droit d'accès à vos données</li>
+                            <li>Droit de rectification</li>
+                            <li>Droit à l'effacement</li>
+                            <li>Droit d'opposition au traitement</li>
+                            <li>Droit à la portabilité des données</li>
+                        </ul>
+                        <p>Pour exercer ces droits, contactez notre DPO à : privacy@supercar.com</p>
 
                         <h3>6. Loi applicable</h3>
-                        <p>Les présentes mentions légales sont soumises au droit français. En cas de litige, les tribunaux français seront seuls compétents.</p>
+                        <p>Les présentes mentions légales sont soumises au droit mauricien. En cas de litige, les tribunaux mauriciens seront seuls compétents.</p>
 
                         <h3>7. Crédits</h3>
-                        <p>Design et développement : SuperCar<br>
-                        Images : © SuperCar - Tous droits réservés</p>
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <tbody>
+                                    <tr>
+                                        <th>Design et développement</th>
+                                        <td>SuperCar</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Images</th>
+                                        <td>© SuperCar - Tous droits réservés</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Icônes</th>
+                                        <td>Icons8</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -103,38 +103,83 @@ if (isset($_SESSION['nom_utilisateur'])) {
                         <div class="card-body">
                             <h2 class="card-title mb-4">Gestion des cookies</h2>
                             
-                            <h3>Qu'est-ce qu'un cookie ?</h3>
-                            <p>Un cookie est un petit fichier texte stocké sur votre ordinateur lors de la visite d'un site web. Il permet de mémoriser vos préférences et de vous offrir une expérience personnalisée.</p>
-
-                            <h3>Les cookies que nous utilisons</h3>
+                            <h3>1. Qu'est-ce qu'un cookie ?</h3>
+                            <p>Un cookie est un petit fichier texte stocké sur votre ordinateur lors de la visite d'un site web. Il permet de :</p>
                             <ul>
-                                <li><strong>Cookies essentiels :</strong> Nécessaires au fonctionnement du site</li>
-                                <li><strong>Cookies de session :</strong> Pour gérer votre connexion et votre panier</li>
-                                <li><strong>Cookies analytiques :</strong> Pour analyser l'utilisation du site</li>
-                                <li><strong>Cookies de préférences :</strong> Pour mémoriser vos choix</li>
+                                <li>Mémoriser vos préférences</li>
+                                <li>Améliorer votre expérience de navigation</li>
+                                <li>Analyser l'utilisation du site</li>
+                                <li>Personnaliser le contenu</li>
                             </ul>
 
-                            <h3>Comment gérer vos cookies ?</h3>
-                            <p>Vous pouvez à tout moment modifier vos préférences concernant les cookies en accédant aux paramètres de votre navigateur. Voici comment faire selon votre navigateur :</p>
+                            <h3>2. Types de cookies utilisés</h3>
+                            <div class="table-responsive">
+                                <table class="table table-dark">
+                                    <thead>
+                                        <tr>
+                                            <th>Type de cookie</th>
+                                            <th>Finalité</th>
+                                            <th>Durée de conservation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cookies essentiels</td>
+                                            <td>Fonctionnement du site</td>
+                                            <td>Session</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cookies de session</td>
+                                            <td>Gestion de la connexion</td>
+                                            <td>Session</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cookies analytiques</td>
+                                            <td>Analyse d'audience</td>
+                                            <td>13 mois</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cookies de préférences</td>
+                                            <td>Personnalisation</td>
+                                            <td>6 mois</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>3. Comment gérer vos cookies ?</h3>
+                            <p>Vous pouvez gérer vos préférences de cookies de plusieurs façons :</p>
                             <ul>
-                                <li>Chrome : Paramètres > Confidentialité et sécurité > Cookies</li>
-                                <li>Firefox : Options > Vie privée et sécurité > Cookies</li>
-                                <li>Safari : Préférences > Confidentialité > Cookies</li>
+                                <li><strong>Via notre bannière de cookies :</strong> Cliquez sur "Paramètres" pour personnaliser vos choix</li>
+                                <li><strong>Via votre navigateur :</strong>
+                                    <ul>
+                                        <li>Chrome : Paramètres > Confidentialité et sécurité > Cookies</li>
+                                        <li>Firefox : Options > Vie privée et sécurité > Cookies</li>
+                                        <li>Safari : Préférences > Confidentialité > Cookies</li>
+                                        <li>Edge : Paramètres > Cookies et autorisations de site</li>
+                                    </ul>
+                                </li>
                             </ul>
 
-                            <h3>Conséquences de la désactivation des cookies</h3>
-                            <p>La désactivation de certains cookies peut affecter certaines fonctionnalités du site, notamment :</p>
+                            <h3>4. Impact de la désactivation</h3>
+                            <p>La désactivation de certains cookies peut affecter :</p>
                             <ul>
                                 <li>La mémorisation de vos préférences</li>
                                 <li>L'accès à votre compte</li>
                                 <li>La personnalisation de votre expérience</li>
+                                <li>Certaines fonctionnalités du site</li>
                             </ul>
 
-                            <h3>Mise à jour de notre politique</h3>
-                            <p>Nous nous réservons le droit de modifier cette politique de cookies à tout moment. Les modifications entrent en vigueur dès leur publication sur le site.</p>
+                            <h3>5. Mise à jour de la politique</h3>
+                            <p>Nous nous réservons le droit de modifier cette politique de cookies. Les modifications seront publiées sur cette page et, si nécessaire, vous serez informé par email.</p>
 
-                            <h3>Contact</h3>
-                            <p>Pour toute question concernant notre utilisation des cookies, veuillez nous contacter à : privacy@supercar.com</p>
+                            <h3>6. Contact</h3>
+                            <p>Pour toute question concernant notre utilisation des cookies :</p>
+                            <ul>
+                                <li>Email : privacy@supercar.com</li>
+                                <li>Téléphone : +230 3215 8794</li>
+                                <li>Adresse : MU.lot54 Battiment4</li>
+                            </ul>
                         </div>
                     </div>
                 </div>

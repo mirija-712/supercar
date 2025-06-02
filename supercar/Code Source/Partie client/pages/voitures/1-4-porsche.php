@@ -343,7 +343,7 @@ if (isset($_SESSION['nom_utilisateur'])) {
                         echo '<img src="' . $row["photo_1"] . '" class="card-img-top" alt="' . $row["nom_modele"] . '">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["nom_modele"] . '</h5>';
-                        echo '<p class="card-text">Prix : <strong>' . $row["prix"] . ' €</strong></p>';
+                        echo '<p class="card-text">Prix : <strong>$' . $row["prix"] . '</strong></p>';
                         echo '<div class="d-flex justify-content-between">';
                         
                         if (isset($_SESSION['nom_utilisateur'])) {

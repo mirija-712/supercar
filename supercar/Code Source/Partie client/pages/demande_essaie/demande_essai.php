@@ -265,8 +265,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom_modele = $_POST['nom_modele'];
     $date_demande = $_POST['date_demande'];
     $heure_arriver = $_POST['heure_arriver'];
-    $nom_utilisateur = $_SESSION['nom_utilisateur']; // Utiliser le nom d'utilisateur de la session
-    
+    $nom_utilisateur = $_SESSION['nom_utilisateur'];
+
     // Vérification de la disponibilité en utilisant la procédure stockée
     $stmt = $connexion->prepare("CALL VerifierDisponibiliteVoiture(?, ?, ?, @disponible)");
     $stmt->bind_param("sss", $nom_modele, $date_demande, $heure_arriver);
@@ -403,7 +403,7 @@ $resultat = $connexion->query($sql);
 
                             <div class="form-group">
                                 <label class="form-label">Heure (08:00/16:00)</label>
-                                <input type="time" name="heure_arriver" class="form-control" min="08:00" max="16:00" required>
+                                <input type="time" name="heure_arriver" class="form-control" min="08:00" max="16:00" step="1800" required>
                             </div>
 
                             <div class="btn-group">
